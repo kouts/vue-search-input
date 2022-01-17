@@ -25,7 +25,9 @@
   "sideEffects": false,
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "build:vite": "vue-tsc --noEmit && vite build",
+    "build:sass": "sass --no-source-map src/styles.scss dist/styles.css",
+    "build": "npm run build:vite && npm run build:sass",
     "preview": "vite preview",
     "lint": "eslint \"**/*.{vue,ts,js}\"",
     "lint-fix": "eslint --fix \"**/*.{vue,ts,js}\"",

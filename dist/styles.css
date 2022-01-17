@@ -1,0 +1,67 @@
+.search-input-wrapper {
+  position: relative;
+}
+.search-input-wrapper .search-input {
+  display: block;
+  font-family: "Inter", system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  width: 100%;
+  padding: 6px 30px 6px 32px;
+  font-size: 16px;
+  font-weight: normal;
+  height: 38px;
+  color: #333;
+  background-color: #f6f9fc;
+  border: 1px solid #f6f9fc;
+  border-radius: 0.35rem;
+  transition: border-color 0.15s ease-in-out;
+}
+.search-input-wrapper .search-input:focus {
+  background-color: white;
+  border-color: #1ea7fd;
+  outline: 0;
+  box-shadow: none;
+}
+.search-input-wrapper .search-icon {
+  color: #83add6;
+  position: absolute;
+  bottom: 4px;
+}
+.search-input-wrapper .search-icon.search {
+  left: 6px;
+}
+.search-input-wrapper .search-icon.shortcut {
+  cursor: text;
+  right: 8px;
+  bottom: 7px;
+  padding: 0px 3px;
+  color: #96b9dc;
+  background-color: #e3ecf6;
+  border-radius: 3px;
+  z-index: 50;
+}
+.search-input-wrapper .search-icon.clear {
+  right: 8px;
+  bottom: 7px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Fix the X appearing in search field on Chrome and IE */
+input[type=search]::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+input[type=search]::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+input[type=search]::-webkit-search-decoration,
+input[type=search]::-webkit-search-cancel-button,
+input[type=search]::-webkit-search-results-button,
+input[type=search]::-webkit-search-results-decoration {
+  display: none;
+}
