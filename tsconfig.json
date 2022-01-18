@@ -2,7 +2,7 @@
   "compilerOptions": {
     "skipLibCheck": true,
     "baseUrl": ".",
-    "target": "es5",
+    "target": "es2016",
     "useDefineForClassFields": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -11,18 +11,40 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@playground/*": ["./playground/*"],
-      "@root/*": ["./*"]
+      "@/*": [
+        "./src/*"
+      ],
+      "@playground/*": [
+        "./playground/*"
+      ],
+      "@root/*": [
+        "./*"
+      ]
     },
-    "types": ["@types/jest"],
+    "types": [
+      "@types/jest"
+    ],
   },
   "include": [
-    "src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", 
-    "playground/**/*.ts", "playground/**/*.d.ts", "playground/**/*.tsx", "playground/**/*.vue",
-    "tests/**/*.ts", "tests/**/*.d.ts", "tests/**/*.tsx", "tests/**/*.vue"
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "playground/**/*.ts",
+    "playground/**/*.d.ts",
+    "playground/**/*.tsx",
+    "playground/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.d.ts",
+    "tests/**/*.tsx",
+    "tests/**/*.vue"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

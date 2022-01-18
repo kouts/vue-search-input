@@ -1,19 +1,3 @@
-var __defProp = Object.defineProperty;
-var __getOwnPropSymbols = Object.getOwnPropertySymbols;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __propIsEnum = Object.prototype.propertyIsEnumerable;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __spreadValues = (a, b) => {
-  for (var prop in b || (b = {}))
-    if (__hasOwnProp.call(b, prop))
-      __defNormalProp(a, prop, b[prop]);
-  if (__getOwnPropSymbols)
-    for (var prop of __getOwnPropSymbols(b)) {
-      if (__propIsEnum.call(b, prop))
-        __defNormalProp(a, prop, b[prop]);
-    }
-  return a;
-};
 import { defineComponent, ref, computed, onBeforeUnmount, openBlock, createElementBlock, normalizeProps, guardReactiveProps, renderSlot, createElementVNode, mergeProps, createCommentVNode } from "vue";
 const fieldType = ["search", "text"];
 var _export_sfc = (sfc, props) => {
@@ -22,6 +6,16 @@ var _export_sfc = (sfc, props) => {
     target[key] = val;
   }
   return target;
+};
+const filterObject = (obj, properties, remove = true) => {
+  const res = {};
+  Object.keys(obj).forEach((objAttr) => {
+    const condition = remove ? properties.indexOf(objAttr) === -1 : properties.indexOf(objAttr) >= 0;
+    if (condition) {
+      res[objAttr] = obj[objAttr];
+    }
+  });
+  return res;
 };
 const _sfc_main = defineComponent({
   inheritAttrs: false,
@@ -40,20 +34,8 @@ const _sfc_main = defineComponent({
   setup(props, { emit, attrs }) {
     const hasFocus = ref(false);
     const inputRef = ref(null);
-    const attrsWithoutStyles = computed(() => {
-      const toOmit = ["class", "style"];
-      const res = {};
-      Object.keys(attrs).forEach((attr) => {
-        if (toOmit.indexOf(attr) === -1) {
-          res[attr] = attrs[attr];
-        }
-      });
-      return res;
-    });
-    const attrsStyles = computed(() => {
-      const style = attrs.style;
-      return __spreadValues(__spreadValues({}, attrs.class ? { class: attrs.class } : {}), style ? { style } : {});
-    });
+    const attrsWithoutStyles = computed(() => filterObject(attrs, ["class", "style"]));
+    const attrsStyles = computed(() => filterObject(attrs, ["class", "style"], false));
     const clear = () => {
       emit("update:modelValue", "");
     };
