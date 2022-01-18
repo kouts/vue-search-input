@@ -50,8 +50,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref, computed, onBeforeUnmount, StyleValue } from 'vue'
+import { defineComponent, PropType, ref, computed, onBeforeUnmount } from 'vue'
 import { fieldType, FieldType } from './SearchInput.types'
+
+const filterObject = (obj: { [key: string]: unknown }, properties: (string | number)[], remove = true) => {
+  const res: { [key: string]: unknown } = {}
+
+  Object.keys(obj).forEach((objAttr) => {
+    const condition = remove ? properties.indexOf(objAttr) === -1 : properties.indexOf(objAttr) >= 0
+    if (condition) {
+      res[objAttr] = obj[objAttr]
+    }
+  })
+
+  return res
+}
 
 export default defineComponent({
   inheritAttrs: false,
@@ -71,26 +84,9 @@ export default defineComponent({
     const hasFocus = ref(false)
     const inputRef = ref<null | HTMLInputElement>(null)
 
-    const attrsWithoutStyles = computed(() => {
-      const toOmit = ['class', 'style']
-      const res = {} as Record<string, unknown>
+    const attrsWithoutStyles = computed(() => filterObject(attrs, ['class', 'style']))
 
-      Object.keys(attrs).forEach((attr) => {
-        if (toOmit.indexOf(attr) === -1) {
-          res[attr] = attrs[attr]
-        }
-      })
-
-      return res
-    })
-
-    const attrsStyles = computed(() => {
-      const style = attrs.style as StyleValue | undefined
-      return {
-        ...(attrs.class ? { class: attrs.class } : {}),
-        ...(style ? { style } : {})
-      }
-    })
+    const attrsStyles = computed(() => filterObject(attrs, ['class', 'style'], false))
 
     const clear = () => {
       emit('update:modelValue', '')
