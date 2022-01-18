@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/kouts/vue-search-input/compare/v1.0.1...v1.0.2) (2022-01-18)
+
+
+### Bug Fixes
+
+* added type definitions ([e0635ea](https://github.com/kouts/vue-search-input/commit/e0635ea8f003ecca45522888f02c8228564963f3))
+
 ## [1.0.1](https://github.com/kouts/vue-search-input/compare/v1.0.0...v1.0.1) (2022-01-17)
 
 
