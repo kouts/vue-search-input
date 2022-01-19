@@ -20,3 +20,17 @@ The `SearchInput` component displays a search input with some additional feature
 ```bash
 npm i vue-search-input
 ```
+
+## Props
+| Name | Type | Default | Description
+| :--- | :--- | :--- | :--- |
+| type | string | `search` | The type of the input field. Allowed types are `search` and `text` |
+| modelValue | string | The input's value | `''` |
+| wrapperClass | string | The default CSS class of the wrapper div | `search-input-wrapper` |
+| searchIcon | boolean | Displays the "search" icon | true |
+| shortcutIcon | boolean | Enables the functionality for the `/` keypress and displays the "shortcut" icon | true |
+| clearIcon | boolean | Displays the "clear text" icon | true |
+| clearOnEsc | boolean | Whether to clear the input field when the `esc` key is pressed | true |
+| blurOnEsc | boolean | Whether to takes the focus out of the input field when the `esc` key is pressed | true |
+| selectOnFocus | boolean | Selects the input's text upon `/` keypress | true |
+| shortcutKey | string | The `key` for the shortcut functionality | `/` |
