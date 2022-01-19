@@ -87,7 +87,6 @@ export default defineComponent({
     searchIcon: defaultBoolean(),
     shortcutIcon: defaultBoolean(),
     clearIcon: defaultBoolean(),
-    escapeEnabled: defaultBoolean(),
     clearOnEsc: defaultBoolean(),
     blurOnEsc: defaultBoolean(),
     selectOnFocus: defaultBoolean(),
@@ -118,7 +117,7 @@ export default defineComponent({
     }
 
     const onKeydown = (e: KeyboardEvent) => {
-      if (props.escapeEnabled && e.key === 'Escape') {
+      if (e.key === 'Escape') {
         props.clearOnEsc && clear()
         if (props.blurOnEsc) {
           const el = inputRef.value as HTMLInputElement
