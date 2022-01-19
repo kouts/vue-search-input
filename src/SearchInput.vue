@@ -90,7 +90,11 @@ export default defineComponent({
     escapeEnabled: defaultBoolean(),
     clearOnEsc: defaultBoolean(),
     blurOnEsc: defaultBoolean(),
-    selectOnFocus: defaultBoolean()
+    selectOnFocus: defaultBoolean(),
+    shortcutKey: {
+      type: String as PropType<KeyboardEvent['key']>,
+      default: '/'
+    }
   },
   emits: ['update:modelValue'],
   setup(props, { emit, attrs }) {
@@ -125,7 +129,7 @@ export default defineComponent({
 
     const onDocumentKeydown = (e: KeyboardEvent) => {
       if (
-        e.key === '/' &&
+        e.key === props.shortcutKey &&
         e.target !== inputRef.value &&
         window.document.activeElement !== inputRef.value &&
         e.target instanceof HTMLInputElement === false &&
