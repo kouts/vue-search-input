@@ -1,6 +1,6 @@
 <template>
   <div v-bind="attrsStyles">
-    <slot name="search-icon">
+    <slot v-if="searchIcon" name="search-icon">
       <div class="search-icon search">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -24,7 +24,7 @@
       @blur="hasFocus = false"
       @keydown="onKeydown"
     />
-    <slot v-if="!hasFocus && modelValue.length === 0" name="shortcut-icon">
+    <slot v-if="shortcutIcon && !hasFocus && modelValue.length === 0" name="shortcut-icon">
       <div class="search-icon shortcut" title='Press "/" to search'>
         <svg width="16" height="20" viewBox="4 4 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -36,7 +36,7 @@
         </svg>
       </div>
     </slot>
-    <slot v-if="modelValue.length > 0" name="clear-icon" :clear="clear">
+    <slot v-if="clearIcon && modelValue.length > 0" name="clear-icon" :clear="clear">
       <div class="search-icon clear" @mousedown="clear">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -50,7 +50,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref, computed, onBeforeUnmount } from 'vue'
+import { defineComponent, PropType, ref, computed, onBeforeUnmount, watch } from 'vue'
 import { fieldType, FieldType } from './SearchInput.types'
 
 const filterObject = (obj: { [key: string]: unknown }, properties: (string | number)[], remove = true) => {
@@ -66,6 +66,8 @@ const filterObject = (obj: { [key: string]: unknown }, properties: (string | num
   return res
 }
 
+const defaultBoolean = (val = true) => ({ type: Boolean, default: val })
+
 export default defineComponent({
   inheritAttrs: false,
   props: {
@@ -77,7 +79,18 @@ export default defineComponent({
     modelValue: {
       type: String,
       default: ''
-    }
+    },
+    wrapperClass: {
+      type: String,
+      default: 'search-input-wrapper'
+    },
+    searchIcon: defaultBoolean(),
+    shortcutIcon: defaultBoolean(),
+    clearIcon: defaultBoolean(),
+    escapeEnabled: defaultBoolean(),
+    clearOnEsc: defaultBoolean(),
+    blurOnEsc: defaultBoolean(),
+    selectOnFocus: defaultBoolean()
   },
   emits: ['update:modelValue'],
   setup(props, { emit, attrs }) {
@@ -86,7 +99,11 @@ export default defineComponent({
 
     const attrsWithoutStyles = computed(() => filterObject(attrs, ['class', 'style']))
 
-    const attrsStyles = computed(() => filterObject(attrs, ['class', 'style'], false))
+    const attrsStyles = computed(() => {
+      const res = filterObject(attrs, ['class', 'style'], false)
+      if (!res.class) res.class = props.wrapperClass
+      return res
+    })
 
     const clear = () => {
       emit('update:modelValue', '')
@@ -97,10 +114,12 @@ export default defineComponent({
     }
 
     const onKeydown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        clear()
-        const el = inputRef.value as HTMLInputElement
-        el.blur()
+      if (props.escapeEnabled && e.key === 'Escape') {
+        props.clearOnEsc && clear()
+        if (props.blurOnEsc) {
+          const el = inputRef.value as HTMLInputElement
+          el.blur()
+        }
       }
     }
 
@@ -125,10 +144,22 @@ export default defineComponent({
       }
     }
 
-    window.document.addEventListener('keydown', onDocumentKeydown)
+    const removeDocumentKeydown = () => window.document.removeEventListener('keydown', onDocumentKeydown)
+
+    watch(
+      () => props.shortcutIcon,
+      (nV) => {
+        if (nV) {
+          window.document.addEventListener('keydown', onDocumentKeydown)
+        } else {
+          removeDocumentKeydown()
+        }
+      },
+      { immediate: true }
+    )
 
     onBeforeUnmount(() => {
-      window.document.removeEventListener('keydown', onDocumentKeydown)
+      removeDocumentKeydown()
     })
 
     return {
