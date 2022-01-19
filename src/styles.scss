@@ -33,6 +33,8 @@ $active-color: #1ea7fd;
     bottom: 4px;
     &.search {
       left: 6px;
+      bottom: 8px;
+      height: 20px;
     }
     &.shortcut {
       cursor: text;
@@ -43,12 +45,14 @@ $active-color: #1ea7fd;
       background-color: darken($input-background, 5%);
       border-radius: 3px;
       z-index: 50;
+      height: 24px;
     }
     &.clear {
       right: 8px;
-      bottom: 7px;
+      bottom: 10px;
       cursor: pointer;
       z-index: 10;
+      height: 18px;
     }
   }
 }
