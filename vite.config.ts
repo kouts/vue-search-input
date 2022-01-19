@@ -4,8 +4,19 @@ import del from 'rollup-plugin-delete'
 import { resolve } from 'path'
 import dts from 'vite-plugin-dts'
 
-// https://vitejs.dev/config/
-export default defineConfig({
+const alias = {
+  '@': resolve(__dirname, './src'),
+  '@playground': resolve(__dirname, './playground'),
+  '@root': resolve(__dirname, './')
+}
+
+const playgroundConfig = {
+  plugins: [vue()],
+  resolve: { alias },
+  build: { outDir: 'dist-playground' }
+}
+
+const libConfig = {
   plugins: [
     del({ targets: 'dist/favicon.ico', hook: 'writeBundle' }),
     vue(),
@@ -20,13 +31,7 @@ export default defineConfig({
       }
     })
   ],
-  resolve: {
-    alias: {
-      '@': resolve(__dirname, './src'),
-      '@playground': resolve(__dirname, './playground'),
-      '@root': resolve(__dirname, './')
-    }
-  },
+  resolve: { alias },
   build: {
     lib: {
       entry: resolve(__dirname, 'src/SearchInput.vue'),
@@ -42,4 +47,8 @@ export default defineConfig({
       }
     }
   }
-})
+}
+
+const config = process.env.BUILD_MODE && process.env.BUILD_MODE === 'playground' ? playgroundConfig : libConfig
+
+export default defineConfig(config)

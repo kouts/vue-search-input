@@ -14,7 +14,15 @@ const val4 = ref('')
 
 <template>
   <div class="container">
-    <h1>vue-search-input demo</h1>
+    <h1>Playground for vue-search-input</h1>
+    <p>
+      <a href="https://github.com/kouts/vue-search-input" target="_blank" rel="noreferrer noopener">vue-search-input</a> is a
+      Vue.js 3 search input component.<br />
+      Inspired by the global search input of Storybook and GitHub, it gets <strong>focus</strong> by pressing the "/" key on the
+      keyboard.
+    </p>
+
+    <h2>Examples</h2>
     <div class="row">
       <div class="col">
         <a href="#" class="mr-3" @click="example = 'example1'">Autogrow</a>
@@ -65,6 +73,10 @@ const val4 = ref('')
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   margin-top: 1rem;
+}
+
+a {
+  color: #2d8ac4;
 }
 
 .d-flex {
