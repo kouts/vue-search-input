@@ -22,4 +22,33 @@ describe('SearchInput.vue', () => {
 
     expect(input).toBeTruthy()
   })
+
+  it('should render a search icon', async () => {
+    const wrapper = createWrapper()
+
+    const div = await wrapper.find('div.search-icon search')
+
+    expect(div).toBeTruthy()
+  })
+
+  it('should pass class to the input wrapper', async () => {
+    const wrapper = createWrapper({
+      attrs: {
+        class: 'test-class'
+      }
+    })
+
+    const div = await wrapper.find('div')
+
+    expect(div.classes()).toContain('test-class')
+  })
+
+  it('should pass event listeners to the input', async () => {
+    const onClick = jest.fn()
+    const wrapper = createWrapper({ attrs: { onClick } })
+
+    wrapper.find('input').trigger('click')
+
+    expect(onClick).toHaveBeenCalled()
+  })
 })
