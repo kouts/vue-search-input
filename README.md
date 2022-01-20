@@ -21,11 +21,52 @@ The `SearchInput` component displays a search input with some additional feature
 npm i vue-search-input
 ```
 
+## Usage
+
+```html
+<template>
+  <SearchInput v-model="searchVal" />
+</template>
+
+<script>
+import { ref } from 'vue'
+import SearchInput from 'vue-search-input'
+// Optionally import default styling
+import 'vue-search-input/dist/styles.css'
+
+const searchVal = ref('')
+
+export default {
+  components: {
+    SearchInput
+  },
+  setup() {
+    return {
+      searchVal
+    }
+  }
+}
+</script>
+```
+
+## Styling
+`vue-search-input` includes default styling (`dist/styles.css`) with that you can use as a base to create your own CSS.
+All the component's elements are inside a `div` which acts a wrapper for the icons and the input.
+The default class for the wrapper `div` is `search-input-wrapper` you can override it by providing class(es) to the `SearchInput` component.
+> Class and styles bound to the `SearchInput` component will be added to the wrapper `div`.
+
+## Events
+> Events bound to the `SearchInput` component will be passed to the `input` element.
+
+| Name | Description | Returned value
+| :--- | :--- | :--- |
+| update:modelValue | The updated bound model | `string`
+
 ## Props
 | Name | Type | Default | Description
 | :--- | :--- | :--- | :--- |
 | type | string | `search` | The type of the input field. Allowed types are `search` and `text` |
-| modelValue | string | The input's value | `''` |
+| modelValue (v-model) | string | The input's value | `''` |
 | wrapperClass | string | The default CSS class of the wrapper div | `search-input-wrapper` |
 | searchIcon | boolean | Displays the "search" icon | true |
 | shortcutIcon | boolean | Enables the functionality for the `/` keypress and displays the "shortcut" icon | true |
@@ -34,3 +75,13 @@ npm i vue-search-input
 | blurOnEsc | boolean | Whether to takes the focus out of the input field when the `esc` key is pressed | true |
 | selectOnFocus | boolean | Selects the input's text upon `/` keypress | true |
 | shortcutKey | string | The `key` for the shortcut functionality | `/` |
+
+## Slots
+
+`vue-search-input` includes some default icons but you can also customize them to suit your needs using the available `slots`.
+
+| Name | Description | Slot props
+| :--- | :--- | :--- |
+| search-icon | Slot for the search icon | - |
+| shortcut-icon | Slot for the shortcut icon | - |
+| clear-icon | Slot for the clear icon | `clear: Function` the function that clears the input |
