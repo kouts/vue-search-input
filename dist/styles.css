@@ -24,30 +24,84 @@
 .search-input-wrapper .search-icon {
   color: #83add6;
   position: absolute;
-  bottom: 4px;
 }
 .search-input-wrapper .search-icon.search {
-  left: 6px;
-  bottom: 8px;
-  height: 20px;
+  left: 12px;
+  bottom: 12px;
+  box-sizing: border-box;
+  display: block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid;
+  border-radius: 100%;
+  margin-left: -4px;
+  margin-top: -4px;
+}
+.search-input-wrapper .search-icon.search::after {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  border-radius: 3px;
+  width: 2px;
+  height: 7px;
+  background: #83add6;
+  transform: rotate(-45deg);
+  top: 11px;
+  left: 12px;
 }
 .search-input-wrapper .search-icon.shortcut {
+  width: 22px;
+  height: 24px;
   cursor: text;
   right: 8px;
   bottom: 7px;
-  padding: 0px 3px;
-  color: #96b9dc;
-  background-color: #e3ecf6;
+  background-color: #e7eff7;
   border-radius: 3px;
   z-index: 50;
-  height: 24px;
+}
+.search-input-wrapper .search-icon.shortcut::after {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  border-radius: 2px;
+  transform: rotate(25deg);
+  width: 2px;
+  height: 16px;
+  top: 4px;
+  left: 10px;
+  z-index: 51;
+  background-color: #96b9dc;
 }
 .search-input-wrapper .search-icon.clear {
   right: 8px;
-  bottom: 10px;
+  bottom: 8px;
   cursor: pointer;
   z-index: 10;
   height: 18px;
+  box-sizing: border-box;
+  display: block;
+  width: 22px;
+  height: 22px;
+  border: 2px solid transparent;
+  border-radius: 40px;
+}
+.search-input-wrapper .search-icon.clear::after, .search-input-wrapper .search-icon.clear::before {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  width: 16px;
+  height: 2px;
+  background: #83add6;
+  transform: rotate(45deg);
+  border-radius: 5px;
+  top: 8px;
+  left: 1px;
+}
+.search-input-wrapper .search-icon.clear::after {
+  transform: rotate(-45deg);
 }
 
 /* Fix the X appearing in search field on Chrome and IE */

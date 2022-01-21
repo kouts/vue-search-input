@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/kouts/vue-search-input/compare/v1.0.3...v1.0.4) (2022-01-21)
+
+
+### Bug Fixes
+
+* moved icons to css ([b549fd3](https://github.com/kouts/vue-search-input/commit/b549fd3be223493ac66da0ddb8621337e5d72a4c))
+
 ## [1.0.3](https://github.com/kouts/vue-search-input/compare/v1.0.2...v1.0.3) (2022-01-21)
 
 
