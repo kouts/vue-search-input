@@ -6,7 +6,7 @@ $active-color: #1ea7fd;
 .search-input-wrapper {
   position: relative;
 
-  .search-input {
+  input[data-search-input="true"] {
     display: block;
     font-family: 'Inter', system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     width: 100%;

@@ -15,7 +15,6 @@
     <input
       ref="inputRef"
       type="search"
-      class="search-input"
       data-search-input="true"
       :value="modelValue"
       v-bind="attrsWithoutStyles"
@@ -137,7 +136,7 @@ export default defineComponent({
       ) {
         e.preventDefault()
         const allVisibleSearchInputs = [].slice
-          .call(document.querySelectorAll('[data-search-bar-input]'))
+          .call(document.querySelectorAll('[data-search-input]'))
           .filter((el: HTMLElement) => {
             return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length)
           })
