@@ -50,9 +50,9 @@ describe('SearchInput.vue', () => {
   it('should render a search icon', async () => {
     const wrapper = createWrapper()
 
-    const div = await wrapper.find('div.search-icon.search')
+    const i = await wrapper.find('i.search-icon.search')
 
-    expect(div).toBeTruthy()
+    expect(i).toBeTruthy()
   })
 
   it('should pass class to the input wrapper', async () => {
@@ -101,9 +101,9 @@ describe('SearchInput.vue', () => {
       }
     })
 
-    const clearIcon = await wrapper.find('div.search-icon.clear')
+    const i = await wrapper.find('i.search-icon.clear')
 
-    await clearIcon.trigger('mousedown')
+    await i.trigger('mousedown')
 
     expect(wrapper.emitted()['update:modelValue'][0]).toEqual([''])
   })

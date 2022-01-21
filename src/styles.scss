@@ -6,7 +6,7 @@ $active-color: #1ea7fd;
 .search-input-wrapper {
   position: relative;
 
-  input[data-search-input="true"] {
+  input[data-search-input='true'] {
     display: block;
     font-family: 'Inter', system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     width: 100%;
@@ -30,29 +30,85 @@ $active-color: #1ea7fd;
   .search-icon {
     color: $icon-color;
     position: absolute;
-    bottom: 4px;
     &.search {
-      left: 6px;
-      bottom: 8px;
-      height: 20px;
+      left: 12px;
+      bottom: 12px;
+      box-sizing: border-box;
+      display: block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid;
+      border-radius: 100%;
+      margin-left: -4px;
+      margin-top: -4px;
+    }
+    &.search::after {
+      content: '';
+      display: block;
+      box-sizing: border-box;
+      position: absolute;
+      border-radius: 3px;
+      width: 2px;
+      height: 7px;
+      background: $icon-color;
+      transform: rotate(-45deg);
+      top: 11px;
+      left: 12px;
     }
     &.shortcut {
+      width: 22px;
+      height: 24px;
       cursor: text;
       right: 8px;
       bottom: 7px;
-      padding: 0px 3px;
-      color: lighten($icon-color, 5%);
-      background-color: darken($input-background, 5%);
+      background-color: darken($input-background, 4%);
       border-radius: 3px;
       z-index: 50;
-      height: 24px;
+    }
+    &.shortcut::after {
+      content: '';
+      display: block;
+      box-sizing: border-box;
+      position: absolute;
+      border-radius: 2px;
+      transform: rotate(25deg);
+      width: 2px;
+      height: 16px;
+      top: 4px;
+      left: 10px;
+      z-index: 51;
+      background-color: lighten($icon-color, 5%);
     }
     &.clear {
       right: 8px;
-      bottom: 10px;
+      bottom: 8px;
       cursor: pointer;
       z-index: 10;
       height: 18px;
+      box-sizing: border-box;
+      display: block;
+      width: 22px;
+      height: 22px;
+      border: 2px solid transparent;
+      border-radius: 40px;
+
+    }
+    &.clear::after,
+    &.clear::before {
+      content: '';
+      display: block;
+      box-sizing: border-box;
+      position: absolute;
+      width: 16px;
+      height: 2px;
+      background: $icon-color;
+      transform: rotate(45deg);
+      border-radius: 5px;
+      top: 8px;
+      left: 1px;
+    }
+    &.clear::after {
+      transform: rotate(-45deg);
     }
   }
 }
