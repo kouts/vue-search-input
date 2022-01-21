@@ -1,3 +1,14 @@
+## [1.0.3](https://github.com/kouts/vue-search-input/compare/v1.0.2...v1.0.3) (2022-01-21)
+
+
+### Bug Fixes
+
+* added extra options ([1e56d66](https://github.com/kouts/vue-search-input/commit/1e56d6625ad649d18d0806a352c746f10523d485))
+* added shortcut key prop ([beb57f3](https://github.com/kouts/vue-search-input/commit/beb57f3defbfca354db5934f79359d509b1ccf31))
+* fixed icons spacing ([7bd0b8d](https://github.com/kouts/vue-search-input/commit/7bd0b8dfefcf5d0d9ea0acd039a4b01070fb8fc8))
+* removed search-input css class ([dca0810](https://github.com/kouts/vue-search-input/commit/dca0810b952a7993bf0ea1d20fbd45726ac45c67))
+* removed unneeded prop ([4c84f90](https://github.com/kouts/vue-search-input/commit/4c84f90e892da2b68aa93e44747e96c3c624510a))
+
 ## [1.0.2](https://github.com/kouts/vue-search-input/compare/v1.0.1...v1.0.2) (2022-01-18)
 
 

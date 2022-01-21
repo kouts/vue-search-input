@@ -1,7 +1,7 @@
 .search-input-wrapper {
   position: relative;
 }
-.search-input-wrapper .search-input {
+.search-input-wrapper input[data-search-input=true] {
   display: block;
   font-family: "Inter", system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   width: 100%;
@@ -15,7 +15,7 @@
   border-radius: 0.35rem;
   transition: border-color 0.15s ease-in-out;
 }
-.search-input-wrapper .search-input:focus {
+.search-input-wrapper input[data-search-input=true]:focus {
   background-color: white;
   border-color: #1ea7fd;
   outline: 0;
@@ -28,6 +28,8 @@
 }
 .search-input-wrapper .search-icon.search {
   left: 6px;
+  bottom: 8px;
+  height: 20px;
 }
 .search-input-wrapper .search-icon.shortcut {
   cursor: text;
@@ -38,12 +40,14 @@
   background-color: #e3ecf6;
   border-radius: 3px;
   z-index: 50;
+  height: 24px;
 }
 .search-input-wrapper .search-icon.clear {
   right: 8px;
-  bottom: 7px;
+  bottom: 10px;
   cursor: pointer;
   z-index: 10;
+  height: 18px;
 }
 
 /* Fix the X appearing in search field on Chrome and IE */

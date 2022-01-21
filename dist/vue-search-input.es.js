@@ -1,4 +1,4 @@
-import { defineComponent, ref, computed, onBeforeUnmount, openBlock, createElementBlock, normalizeProps, guardReactiveProps, renderSlot, createElementVNode, mergeProps, createCommentVNode } from "vue";
+import { defineComponent, ref, computed, watch, onBeforeUnmount, openBlock, createElementBlock, normalizeProps, guardReactiveProps, renderSlot, createCommentVNode, createElementVNode, mergeProps } from "vue";
 const fieldType = ["search", "text"];
 var _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
@@ -17,6 +17,7 @@ const filterObject = (obj, properties, remove = true) => {
   });
   return res;
 };
+const defaultBoolean = (val = true) => ({ type: Boolean, default: val });
 const _sfc_main = defineComponent({
   inheritAttrs: false,
   props: {
@@ -28,6 +29,20 @@ const _sfc_main = defineComponent({
     modelValue: {
       type: String,
       default: ""
+    },
+    wrapperClass: {
+      type: String,
+      default: "search-input-wrapper"
+    },
+    searchIcon: defaultBoolean(),
+    shortcutIcon: defaultBoolean(),
+    clearIcon: defaultBoolean(),
+    clearOnEsc: defaultBoolean(),
+    blurOnEsc: defaultBoolean(),
+    selectOnFocus: defaultBoolean(),
+    shortcutKey: {
+      type: String,
+      default: "/"
     }
   },
   emits: ["update:modelValue"],
@@ -35,7 +50,12 @@ const _sfc_main = defineComponent({
     const hasFocus = ref(false);
     const inputRef = ref(null);
     const attrsWithoutStyles = computed(() => filterObject(attrs, ["class", "style"]));
-    const attrsStyles = computed(() => filterObject(attrs, ["class", "style"], false));
+    const attrsStyles = computed(() => {
+      const res = filterObject(attrs, ["class", "style"], false);
+      if (!res.class)
+        res.class = props.wrapperClass;
+      return res;
+    });
     const clear = () => {
       emit("update:modelValue", "");
     };
@@ -44,15 +64,17 @@ const _sfc_main = defineComponent({
     };
     const onKeydown = (e) => {
       if (e.key === "Escape") {
-        clear();
-        const el = inputRef.value;
-        el.blur();
+        props.clearOnEsc && clear();
+        if (props.blurOnEsc) {
+          const el = inputRef.value;
+          el.blur();
+        }
       }
     };
     const onDocumentKeydown = (e) => {
-      if (e.key === "/" && e.target !== inputRef.value && window.document.activeElement !== inputRef.value && e.target instanceof HTMLInputElement === false && e.target instanceof HTMLSelectElement === false && e.target instanceof HTMLTextAreaElement === false) {
+      if (e.key === props.shortcutKey && e.target !== inputRef.value && window.document.activeElement !== inputRef.value && e.target instanceof HTMLInputElement === false && e.target instanceof HTMLSelectElement === false && e.target instanceof HTMLTextAreaElement === false) {
         e.preventDefault();
-        const allVisibleSearchInputs = [].slice.call(document.querySelectorAll("[data-search-bar-input]")).filter((el) => {
+        const allVisibleSearchInputs = [].slice.call(document.querySelectorAll("[data-search-input]")).filter((el) => {
           return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
         });
         const elToFocus = allVisibleSearchInputs.length > 1 ? allVisibleSearchInputs[0] : inputRef.value;
@@ -60,9 +82,16 @@ const _sfc_main = defineComponent({
         elToFocus == null ? void 0 : elToFocus.select();
       }
     };
-    window.document.addEventListener("keydown", onDocumentKeydown);
+    const removeDocumentKeydown = () => window.document.removeEventListener("keydown", onDocumentKeydown);
+    watch(() => props.shortcutIcon, (nV) => {
+      if (nV) {
+        window.document.addEventListener("keydown", onDocumentKeydown);
+      } else {
+        removeDocumentKeydown();
+      }
+    }, { immediate: true });
     onBeforeUnmount(() => {
-      window.document.removeEventListener("keydown", onDocumentKeydown);
+      removeDocumentKeydown();
     });
     return {
       inputRef,
@@ -128,13 +157,12 @@ const _hoisted_5 = [
 ];
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", normalizeProps(guardReactiveProps(_ctx.attrsStyles)), [
-    renderSlot(_ctx.$slots, "search-icon", {}, () => [
+    _ctx.searchIcon ? renderSlot(_ctx.$slots, "search-icon", { key: 0 }, () => [
       _hoisted_1
-    ]),
+    ]) : createCommentVNode("", true),
     createElementVNode("input", mergeProps({
       ref: "inputRef",
       type: "search",
-      class: "search-input",
       "data-search-input": "true",
       value: _ctx.modelValue
     }, _ctx.attrsWithoutStyles, {
@@ -143,11 +171,11 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       onBlur: _cache[2] || (_cache[2] = ($event) => _ctx.hasFocus = false),
       onKeydown: _cache[3] || (_cache[3] = (...args) => _ctx.onKeydown && _ctx.onKeydown(...args))
     }), null, 16, _hoisted_2),
-    !_ctx.hasFocus && _ctx.modelValue.length === 0 ? renderSlot(_ctx.$slots, "shortcut-icon", { key: 0 }, () => [
+    _ctx.shortcutIcon && !_ctx.hasFocus && _ctx.modelValue.length === 0 ? renderSlot(_ctx.$slots, "shortcut-icon", { key: 1 }, () => [
       _hoisted_3
     ]) : createCommentVNode("", true),
-    _ctx.modelValue.length > 0 ? renderSlot(_ctx.$slots, "clear-icon", {
-      key: 1,
+    _ctx.clearIcon && _ctx.modelValue.length > 0 ? renderSlot(_ctx.$slots, "clear-icon", {
+      key: 2,
       clear: _ctx.clear
     }, () => [
       createElementVNode("div", {
