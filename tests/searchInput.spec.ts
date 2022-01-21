@@ -1,41 +1,32 @@
 import { mount } from '@vue/test-utils'
 import SearchInput from '@/SearchInput.vue'
 import { fieldType } from '@/SearchInput.types'
-import { nextTick } from 'vue'
 
 const createWrapper = (opts?: Record<string, unknown>) => {
   return mount(SearchInput, opts)
 }
 
-const createWrapperContainer = (componentArgs?: Record<string, unknown>) => {
-  const args = componentArgs || {}
+const createWrapperContainer = () => {
   const wrapperContainer = {
     components: {
       SearchInput
     },
     data() {
       return {
-        searchText: '',
-        args
+        searchText1: '',
+        searchText2: ''
       }
     },
     template: `
       <div>
-        <select>
-          <option></option>
-        </select>
-        <SearchInput v-model="searchText" v-bind="args" />
+        <SearchInput v-model="searchText1" />
+        <SearchInput v-model="searchText2" />
       </div>
     `
   }
 
   return mount(wrapperContainer, {
-    attachTo: document.body,
-    global: {
-      stubs: {
-        transition: false
-      }
-    }
+    attachTo: document.body
   })
 }
 
@@ -134,7 +125,9 @@ describe('SearchInput.vue', () => {
   })
 
   it('focuses the input when the "/" key is pressed', async () => {
-    const wrapper = createWrapperContainer()
+    const wrapper = createWrapper({
+      attachTo: document.body
+    })
 
     const event = new KeyboardEvent('keydown', { key: '/' })
     document.dispatchEvent(event)
@@ -182,18 +175,16 @@ describe('SearchInput.vue', () => {
   })
 
   it('focuses the input text when the "/" key is pressed', async () => {
-    const wrapper = createWrapper({
-      attachTo: document.body,
-      props: {
-        modelValue: 'test'
-      }
-    })
+    const wrapper = createWrapperContainer()
+
+    const inputs = await wrapper.findAll('input[data-search-input="true"]')
+
+    Object.defineProperty(inputs[0].element as HTMLInputElement, 'offsetWidth', { value: 10, writable: true })
+    Object.defineProperty(inputs[1].element as HTMLInputElement, 'offsetWidth', { value: 10, writable: true })
 
     const event = new KeyboardEvent('keydown', { key: '/' })
     document.dispatchEvent(event)
 
-    const input = await wrapper.find('input')
-
-    expect(input.element).toBe(document.activeElement)
+    expect(inputs[0].element).toBe(document.activeElement)
   })
 })
