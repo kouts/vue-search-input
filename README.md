@@ -84,11 +84,11 @@ The default class for the wrapper `div` is `search-input-wrapper` you can overri
 
 `vue-search-input` includes some default icons but you can also customize them to suit your needs using the available `slots`.
 
-| Name | Description | Slot props
+| Name | Description | Default content
 | :--- | :--- | :--- |
-| search-icon | Slot for the search icon | - |
-| shortcut-icon | Slot for the shortcut icon | - |
-| clear-icon | Slot for the clear icon | `clear: Function` the function that clears the input |
+| search-icon | Slot for the search icon | `<i class="search-icon search"></i>` |
+| shortcut-icon | Slot for the shortcut icon | `<i class="search-icon shortcut" title='Press "/" to search'></i>` |
+| clear-icon | Slot for the clear icon <br />`{ clear: () => void }` the function that clears the input |  `<button class="search-icon clear" aria-label="Clear" @mousedown="clear" @keydown.space.enter="clear"></button>`|
 | append | Adds an item inside the input wrapper, before the search icon | - |
 | append-inner | Adds an item inside the input wrapper, after the search icon | - |
 | prepend | Adds an item inside the input wrapper directly after the input element | - |
