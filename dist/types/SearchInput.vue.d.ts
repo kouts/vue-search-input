@@ -26,6 +26,10 @@ declare const _default: import("vue").DefineComponent<{
         type: BooleanConstructor;
         default: boolean;
     };
+    hideShortcutIconOnBlur: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
     clearOnEsc: {
         type: BooleanConstructor;
         default: boolean;
@@ -35,6 +39,10 @@ declare const _default: import("vue").DefineComponent<{
         default: boolean;
     };
     selectOnFocus: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    shortcutListenerEnabled: {
         type: BooleanConstructor;
         default: boolean;
     };
@@ -54,6 +62,8 @@ declare const _default: import("vue").DefineComponent<{
     attrsWithoutStyles: import("vue").ComputedRef<{
         [key: string]: unknown;
     }>;
+    showClearIcon: import("vue").ComputedRef<boolean>;
+    showShortcutIcon: import("vue").ComputedRef<boolean>;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "update:modelValue"[], "update:modelValue", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
     type?: unknown;
     modelValue?: unknown;
@@ -61,9 +71,11 @@ declare const _default: import("vue").DefineComponent<{
     searchIcon?: unknown;
     shortcutIcon?: unknown;
     clearIcon?: unknown;
+    hideShortcutIconOnBlur?: unknown;
     clearOnEsc?: unknown;
     blurOnEsc?: unknown;
     selectOnFocus?: unknown;
+    shortcutListenerEnabled?: unknown;
     shortcutKey?: unknown;
 } & {
     type: "search" | "text";
@@ -72,9 +84,11 @@ declare const _default: import("vue").DefineComponent<{
     searchIcon: boolean;
     shortcutIcon: boolean;
     clearIcon: boolean;
+    hideShortcutIconOnBlur: boolean;
     clearOnEsc: boolean;
     blurOnEsc: boolean;
     selectOnFocus: boolean;
+    shortcutListenerEnabled: boolean;
     shortcutKey: string;
 } & {}> & {
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
@@ -85,9 +99,11 @@ declare const _default: import("vue").DefineComponent<{
     searchIcon: boolean;
     shortcutIcon: boolean;
     clearIcon: boolean;
+    hideShortcutIconOnBlur: boolean;
     clearOnEsc: boolean;
     blurOnEsc: boolean;
     selectOnFocus: boolean;
+    shortcutListenerEnabled: boolean;
     shortcutKey: string;
 }>;
 export default _default;

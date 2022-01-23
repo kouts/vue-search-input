@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/kouts/vue-search-input/compare/v1.0.4...v1.1.0) (2022-01-23)
+
+
+### Bug Fixes
+
+* fixed select on ficus, added hideShortcutIconOnBlur prop ([2398b6f](https://github.com/kouts/vue-search-input/commit/2398b6fc042db59f8ea05d089689904c448f0953))
+
+
+### Features
+
+* added slots, shortcut prop, clear icon button ([86ec366](https://github.com/kouts/vue-search-input/commit/86ec366cf9359ffede749d2c888b730ee47c9072))
+
 ## [1.0.4](https://github.com/kouts/vue-search-input/compare/v1.0.3...v1.0.4) (2022-01-21)
 
 
