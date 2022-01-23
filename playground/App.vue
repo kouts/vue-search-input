@@ -53,10 +53,18 @@ const say = (text: string) => {
     <h2>Examples</h2>
     <div class="row">
       <div class="col">
-        <a href="#" :class="['me-3', example === 'example1' && 'fw-bold']" @click="example = 'example1'"> Storybook style </a>
-        <a href="#" :class="['me-3', example === 'example2' && 'fw-bold']" @click="example = 'example2'"> GitHub style </a>
-        <a href="#" :class="['me-3', example === 'example3' && 'fw-bold']" @click="example = 'example3'"> Gmail style </a>
-        <a href="#" :class="['me-3', example === 'example4' && 'fw-bold']" @click="example = 'example4'"> YouTube style </a>
+        <a href="#" :class="['me-3', example === 'example1' && 'fw-bold']" @click.prevent="example = 'example1'">
+          Storybook style
+        </a>
+        <a href="#" :class="['me-3', example === 'example2' && 'fw-bold']" @click.prevent="example = 'example2'">
+          GitHub style
+        </a>
+        <a href="#" :class="['me-3', example === 'example3' && 'fw-bold']" @click.prevent="example = 'example3'">
+          Gmail style
+        </a>
+        <a href="#" :class="['me-3', example === 'example4' && 'fw-bold']" @click.prevent="example = 'example4'">
+          YouTube style
+        </a>
       </div>
     </div>
 
