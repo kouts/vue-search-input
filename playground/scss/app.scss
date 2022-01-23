@@ -1,0 +1,85 @@
+// 4. Include the basic Bootstrap CSS
+@import "bootstrap/scss/_utilities";
+@import "bootstrap/scss/_reboot";
+@import "bootstrap/scss/_type";
+@import "bootstrap/scss/_images";
+@import "bootstrap/scss/_containers";
+@import "bootstrap/scss/_grid";
+@import "bootstrap/scss/_helpers";
+
+// 4.1.1 Include additional Bootstrap CSS as needed
+@import "bootstrap/scss/_buttons";
+
+// 5. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@import "bootstrap/scss/utilities/_api";
+
+// 6. Add additional custom code here
+.btn-primary {
+  color: $white;
+  &:hover {
+    color: $white;
+  }
+  &:focus {
+    color: $white;
+  }  
+}   
+
+.w270 {
+  width: 270px;
+  transition: width 0.35s;
+}
+
+.w350 {
+  width: 350px;
+  transition: width 0.35s;
+}
+
+.search-input-wrapper {
+  &.no-search-icon {
+    [data-search-input='true'] {
+      padding-left: 12px;
+    }
+  }
+
+  &.gmail {
+    input[data-search-input='true'] {
+      padding-right: 56px;
+    }
+    .search-icon {
+      &.clear {
+        right: 32px;
+      }
+    }
+    .settings {
+      position: absolute;
+      bottom: 7px;
+      right: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      padding: 0px;
+      line-height: 0;
+      color: $input-icon-color;
+      fill: $input-icon-color;
+    }
+  }
+
+  &.youtube {
+    display: flex;
+    flex-wrap: wrap;
+    input[data-search-input='true'] {
+      flex: 1 1 auto;
+      width: 1%;
+    }
+    .search-icon {
+      &.clear {
+        right: 50px;
+      }
+    }
+    .btn-search {
+      fill: $white;
+    }
+  }
+
+}

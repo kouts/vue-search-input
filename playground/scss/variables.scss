@@ -1,0 +1,16 @@
+// Include parts of Bootstrap
+
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "bootstrap/scss/_functions";
+
+// 2. Include any default variable overrides here
+$primary: #1ea7fd;
+$font-family-sans-serif: Avenir, Helvetica, Arial, sans-serif;
+
+// 2.1. Add custom SCSS variables
+$input-icon-color: darken(#f6f9fc, 30%);
+
+// 3. Include remainder of required Bootstrap stylesheets
+@import "bootstrap/scss/_variables";
+@import "bootstrap/scss/_mixins";
+@import "bootstrap/scss/_root";

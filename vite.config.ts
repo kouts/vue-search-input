@@ -13,7 +13,14 @@ const alias = {
 const playgroundConfig = {
   plugins: [vue()],
   resolve: { alias },
-  build: { outDir: 'dist-playground' }
+  build: { outDir: 'dist-playground' },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "@playground/scss/variables";`
+      }
+    }
+  }
 }
 
 const libConfig = {
@@ -51,4 +58,10 @@ const libConfig = {
 
 const config = process.env.BUILD_MODE && process.env.BUILD_MODE === 'playground' ? playgroundConfig : libConfig
 
-export default defineConfig(config)
+export default defineConfig(({ command }) => {
+  if (command === 'serve') {
+    return playgroundConfig
+  } else {
+    return config
+  }
+})

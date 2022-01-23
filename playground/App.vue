@@ -16,15 +16,18 @@ const hasFocus2 = ref(false)
 const val1 = ref('')
 const val2 = ref('')
 const val3 = ref('')
+const val4 = ref('')
 
 const ref1 = ref(null)
 const ref2 = ref(null)
 const ref3 = ref(null)
+const ref4 = ref(null)
 
 const refs: Refs = {
   ref1,
   ref2,
-  ref3
+  ref3,
+  ref4
 }
 
 const showProps = (refName: string) => {
@@ -44,7 +47,7 @@ const say = (text: string) => {
 
 <template>
   <div class="container">
-    <h1>Playground for vue-search-input</h1>
+    <h1 class="mt-4">Playground for vue-search-input</h1>
     <p>
       <a href="https://github.com/kouts/vue-search-input" target="_blank" rel="noreferrer noopener">vue-search-input</a> is a
       Vue.js 3 search input component.<br />
@@ -55,20 +58,16 @@ const say = (text: string) => {
     <h2>Examples</h2>
     <div class="row">
       <div class="col">
-        <a href="#" :class="['mr-3', example === 'example1' && 'font-weight-bold']" @click="example = 'example1'">
-          Storybook style
-        </a>
-        <a href="#" :class="['mr-3', example === 'example2' && 'font-weight-bold']" @click="example = 'example2'">
-          GitHub style
-        </a>
-        <a href="#" :class="['mr-3', example === 'example3' && 'font-weight-bold']" @click="example = 'example3'">
-          Gmail style
-        </a>
+        <a href="#" :class="['me-3', example === 'example1' && 'fw-bold']" @click="example = 'example1'"> Storybook style </a>
+        <a href="#" :class="['me-3', example === 'example2' && 'fw-bold']" @click="example = 'example2'"> GitHub style </a>
+        <a href="#" :class="['me-3', example === 'example3' && 'fw-bold']" @click="example = 'example3'"> Gmail style </a>
+        <a href="#" :class="['me-3', example === 'example4' && 'fw-bold']" @click="example = 'example4'"> YouTube style </a>
       </div>
     </div>
+
     <div v-if="example === 'example1'" class="row mt-4">
       <div class="col">
-        <div class="font-weight-bold">Storybook</div>
+        <div class="fw-bold">Storybook</div>
         <SearchInput
           ref="ref1"
           v-model="val1"
@@ -77,12 +76,14 @@ const say = (text: string) => {
           @focus="hasFocus1 = true"
           @blur="hasFocus1 = false"
         />
-        <pre class="d-flex mt-2">{{ showProps('ref1') }}</pre>
+        <div class="font-monospace text-secondary mt-3">Props</div>
+        <pre class="text-secondary">{{ showProps('ref1') }}</pre>
       </div>
     </div>
+
     <div v-if="example === 'example2'" class="row mt-4">
       <div class="col">
-        <div class="font-weight-bold">GitHub</div>
+        <div class="fw-bold">GitHub</div>
         <SearchInput
           ref="ref2"
           v-model="val2"
@@ -96,12 +97,14 @@ const say = (text: string) => {
           @focus="hasFocus2 = true"
           @blur="hasFocus2 = false"
         />
-        <pre class="d-flex mt-2">{{ showProps('ref2') }}</pre>
+        <div class="font-monospace text-secondary mt-3">Props</div>
+        <pre class="text-secondary">{{ showProps('ref2') }}</pre>
       </div>
     </div>
+
     <div v-if="example === 'example3'" class="row mt-4">
       <div class="col">
-        <div class="font-weight-bold">Gmail</div>
+        <div class="fw-bold">Gmail</div>
         <SearchInput
           ref="ref3"
           v-model="val3"
@@ -121,7 +124,36 @@ const say = (text: string) => {
             </button>
           </template>
         </SearchInput>
-        <pre class="d-flex mt-2">{{ showProps('ref3') }}</pre>
+        <div class="font-monospace text-secondary mt-3">Props</div>
+        <pre class="text-secondary">{{ showProps('ref3') }}</pre>
+      </div>
+    </div>
+
+    <div v-if="example === 'example4'" class="row mt-4">
+      <div class="col">
+        <div class="fw-bold">YouTube</div>
+        <SearchInput
+          ref="ref4"
+          v-model="val4"
+          placeholder="Search"
+          class="search-input-wrapper no-search-icon youtube mt-2 w350"
+          :search-icon="false"
+          :clear-on-esc="false"
+          :select-on-focus="false"
+          :shortcut-icon="false"
+        >
+          <template #append-outer>
+            <button class="btn btn-primary btn-search" @click="say('Search clicked')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                <path
+                  d="M20.87,20.17l-5.59-5.59C16.35,13.35,17,11.75,17,10c0-3.87-3.13-7-7-7s-7,3.13-7,7s3.13,7,7,7c1.75,0,3.35-0.65,4.58-1.71 l5.59,5.59L20.87,20.17z M10,16c-3.31,0-6-2.69-6-6s2.69-6,6-6s6,2.69,6,6S13.31,16,10,16z"
+                ></path>
+              </svg>
+            </button>
+          </template>
+        </SearchInput>
+        <div class="font-monospace text-secondary mt-3">Props</div>
+        <pre class="text-secondary">{{ showProps('ref4') }}</pre>
       </div>
     </div>
 
@@ -134,7 +166,7 @@ const say = (text: string) => {
         rel="noreferrer noopener"
         class="d-inline-flex align-items-center text-decoration-none"
       >
-        <svg width="24" height="24" viewBox="0 0 16 16" class="mr-2">
+        <svg width="24" height="24" viewBox="0 0 16 16" class="me-2">
           <path
             fill-rule="evenodd"
             d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
@@ -147,143 +179,6 @@ const say = (text: string) => {
 </template>
 
 <style lang="scss">
+@import '@playground/scss/app.scss';
 @import '@/styles.scss';
-
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: $input-color;
-  margin-top: 1rem;
-}
-
-hr {
-  border: 0;
-  height: 1px;
-  background: lighten($input-color, 50%);
-}
-
-a {
-  color: $active-color;
-}
-
-.d-flex {
-  display: flex;
-}
-
-.d-inline-flex {
-  display: inline-flex;
-}
-
-.justify-content-center {
-  justify-content: center;
-}
-
-.align-items-center {
-  align-items: center;
-}
-
-.text-decoration-none {
-  text-decoration: none;
-}
-
-.font-weight-bold {
-  font-weight: bold;
-}
-
-.container {
-  max-width: 1140px;
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
-}
-
-.col {
-  flex-basis: 0;
-  flex-grow: 1;
-  max-width: 100%;
-  position: relative;
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-}
-
-.mt-1 {
-  margin-top: 0.25rem;
-}
-
-.mt-2 {
-  margin-top: 0.5rem;
-}
-
-.mt-3 {
-  margin-top: 0.75rem;
-}
-
-.mt-4 {
-  margin-top: 1rem;
-}
-
-.mt-5 {
-  margin-top: 1.25rem;
-}
-
-.mr-2 {
-  margin-right: 0.5rem;
-}
-
-.mr-3 {
-  margin-right: 0.75rem;
-}
-
-.w270 {
-  width: 270px;
-  transition: width 0.35s;
-}
-
-.w350 {
-  width: 550px;
-  transition: width 0.35s;
-}
-
-.search-input-wrapper {
-  &.no-search-icon {
-    [data-search-input='true'] {
-      padding-left: 12px;
-    }
-  }
-
-  &.gmail {
-    input[data-search-input='true'] {
-      padding-right: 56px;
-    }
-    .search-icon {
-      &.clear {
-        right: 32px;
-      }
-    }
-    .settings {
-      position: absolute;
-      bottom: 7px;
-      right: 6px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      outline: none;
-      padding: 0px;
-      line-height: 0;
-      color: $icon-color;
-      fill: $icon-color;
-    }
-  }
-}
 </style>
