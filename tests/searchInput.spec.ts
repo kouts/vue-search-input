@@ -108,7 +108,7 @@ describe('SearchInput.vue', () => {
     expect(wrapper.emitted()['update:modelValue'][0]).toEqual([''])
   })
 
-  it('esc key clears the value', async () => {
+  it('clears the value with the "esc" key', async () => {
     const wrapper = createWrapper({
       props: {
         modelValue: 'test'
@@ -186,5 +186,17 @@ describe('SearchInput.vue', () => {
     document.dispatchEvent(event)
 
     expect(inputs[0].element).toBe(document.activeElement)
+  })
+
+  it('should render a shortcut icon when the hideShortcutIconOnBlur prop is false', async () => {
+    const wrapper = createWrapper({
+      props: {
+        hideShortcutIconOnBlur: false
+      }
+    })
+
+    const i = await wrapper.find('i.search-icon.shortcut')
+
+    expect(i).toBeTruthy()
   })
 })

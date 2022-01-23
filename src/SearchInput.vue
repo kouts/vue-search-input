@@ -14,10 +14,10 @@
       @blur="hasFocus = false"
       @keydown="onKeydown"
     />
-    <slot v-if="shortcutIcon && !hasFocus && modelValue.length === 0" name="shortcut-icon">
+    <slot v-if="showShortcutIcon" name="shortcut-icon">
       <i class="search-icon shortcut" title='Press "/" to search'></i>
     </slot>
-    <slot v-if="clearIcon && modelValue.length > 0" name="clear-icon" :clear="clear">
+    <slot v-if="showClearIcon" name="clear-icon" :clear="clear">
       <i class="search-icon clear" @mousedown="clear"></i>
     </slot>
   </div>
@@ -61,6 +61,7 @@ export default defineComponent({
     searchIcon: defaultBoolean(),
     shortcutIcon: defaultBoolean(),
     clearIcon: defaultBoolean(),
+    hideShortcutIconOnBlur: defaultBoolean(),
     clearOnEsc: defaultBoolean(),
     blurOnEsc: defaultBoolean(),
     selectOnFocus: defaultBoolean(),
@@ -80,6 +81,14 @@ export default defineComponent({
       const res = filterObject(attrs, ['class', 'style'], false)
       if (!res.class) res.class = props.wrapperClass
       return res
+    })
+
+    const showClearIcon = computed(() => !!(props.clearIcon && props.modelValue.length > 0))
+
+    const showShortcutIcon = computed(() => {
+      if (props.shortcutIcon && !hasFocus.value && !props.hideShortcutIconOnBlur) return true
+      if (props.shortcutIcon && !hasFocus.value && props.modelValue.length === 0) return true
+      return false
     })
 
     const clear = () => {
@@ -117,7 +126,7 @@ export default defineComponent({
           })
         const elToFocus = allVisibleSearchInputs.length > 1 ? allVisibleSearchInputs[0] : inputRef.value
         elToFocus?.focus()
-        elToFocus?.select()
+        if (props.selectOnFocus) elToFocus?.select()
       }
     }
 
@@ -146,7 +155,9 @@ export default defineComponent({
       onInput,
       onKeydown,
       attrsStyles,
-      attrsWithoutStyles
+      attrsWithoutStyles,
+      showClearIcon,
+      showShortcutIcon
     }
   }
 })
