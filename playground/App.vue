@@ -31,13 +31,8 @@ const refs: Refs = {
 }
 
 const showProps = (refName: string) => {
-  const propKeys = Object.keys(SearchInput.props)
-  const attrs = refs[refName].value ?? {}
-
-  const res = Object.keys(attrs).reduce((acc, curr) => {
-    return { ...acc, ...(propKeys.includes(curr) && { [curr]: attrs[curr] }) }
-  }, {})
-  return res
+  const cmp = refs[refName].value ?? {}
+  return cmp?._?.props
 }
 
 const say = (text: string) => {
