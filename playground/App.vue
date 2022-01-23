@@ -5,11 +5,11 @@ import { ref } from 'vue'
 import SearchInput from '@/SearchInput.vue'
 
 const example = ref('example1')
-const hasFocus = ref(false)
+const hasFocus1 = ref(false)
+const hasFocus2 = ref(false)
 const val1 = ref('')
 const val2 = ref('')
 const val3 = ref('')
-const val4 = ref('')
 </script>
 
 <template>
@@ -25,40 +25,64 @@ const val4 = ref('')
     <h2>Examples</h2>
     <div class="row">
       <div class="col">
-        <a href="#" class="mr-3" @click="example = 'example1'">Autogrow</a>
-        <a href="#" class="mr-3" @click="example = 'example2'">Without search icon</a>
-        <a href="#" class="mr-3" @click="example = 'example3'">Without shortcut icon</a>
-        <a href="#" @click="example = 'example4'">Without clear icon</a>
+        <a href="#" class="mr-3" @click="example = 'example1'">Storybook style</a>
+        <a href="#" class="mr-3" @click="example = 'example2'">GitHub style</a>
+        <a href="#" class="mr-3" @click="example = 'example3'">Gmail style</a>
       </div>
     </div>
     <div v-if="example === 'example1'" class="row mt-4">
       <div class="col">
-        <div>Autogrow</div>
-        <div :class="['search-input-wrapper mt-2', hasFocus ? 'w350' : 'w250']">
-          <SearchInput v-model="val1" placeholder="Search..." @focus="hasFocus = true" @blur="hasFocus = false" />
-        </div>
+        <div>Storybook style</div>
+        <SearchInput
+          v-model="val1"
+          class="search-input-wrapper mt-2 w270"
+          :placeholder="hasFocus1 ? 'Type to find...' : 'Find components'"
+          @focus="hasFocus1 = true"
+          @blur="hasFocus1 = false"
+        />
         <div class="d-flex mt-2">{{ val1 }}</div>
       </div>
     </div>
     <div v-if="example === 'example2'" class="row mt-4">
       <div class="col">
-        <div>Without search icon</div>
-        <SearchInput v-model="val2" class="search-input-wrapper no-search-icon mt-2 w250" :search-icon="false" />
+        <div>GitHub style</div>
+        <SearchInput
+          v-model="val2"
+          placeholder="Search or jump to..."
+          :class="['search-input-wrapper no-search-icon mt-2', hasFocus2 ? 'w350' : 'w270']"
+          :search-icon="false"
+          :clear-icon="false"
+          :clear-on-esc="false"
+          :select-on-focus="false"
+          :hide-shortcut-icon-on-blur="false"
+          @focus="hasFocus2 = true"
+          @blur="hasFocus2 = false"
+        />
         <div class="d-flex mt-2">{{ val2 }}</div>
       </div>
     </div>
     <div v-if="example === 'example3'" class="row mt-4">
       <div class="col">
-        <div>Without shortcut icon</div>
-        <SearchInput v-model="val3" class="search-input-wrapper no-shortcut-icon mt-2 w250" :shortcut-icon="false" />
-        <div class="d-flex mt-2">{{ val3 }}</div>
-      </div>
-    </div>
-    <div v-if="example === 'example4'" class="row mt-4">
-      <div class="col">
-        <div>Without clear icon</div>
-        <SearchInput v-model="val4" class="search-input-wrapper no-clear-icon mt-2 w250" :clear-icon="false" />
-        <div class="d-flex mt-2">{{ val4 }}</div>
+        <div>Gmail style</div>
+        <SearchInput
+          v-model="val3"
+          class="search-input-wrapper gmail mt-2 w270"
+          placeholder="Search mail"
+          :clear-on-esc="false"
+          :shortcut-icon="false"
+          :shortcut-listener-enabled="false"
+        >
+          <template #append-outer>
+            <button class="settings">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path
+                  d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"
+                ></path>
+              </svg>
+            </button>
+          </template>
+        </SearchInput>
+        <div class="d-flex mt-2">{{ val1 }}</div>
       </div>
     </div>
   </div>
@@ -141,8 +165,8 @@ a {
   margin-right: 0.75rem;
 }
 
-.w250 {
-  width: 250px;
+.w270 {
+  width: 270px;
   transition: width 0.35s;
 }
 
@@ -153,8 +177,32 @@ a {
 
 .search-input-wrapper {
   &.no-search-icon {
-    .search-input {
+    [data-search-input='true'] {
       padding-left: 12px;
+    }
+  }
+
+  &.gmail {
+    input[data-search-input='true'] {
+      padding-right: 56px;
+    }
+    .search-icon {
+      &.clear {
+        right: 32px;
+      }
+    }
+    .settings {
+      position: absolute;
+      bottom: 7px;
+      right: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      padding: 0px;
+      line-height: 0;
+      color: $icon-color;
+      fill: $icon-color;
     }
   }
 }

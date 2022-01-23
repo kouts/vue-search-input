@@ -1,8 +1,10 @@
 <template>
   <div v-bind="attrsStyles">
+    <slot name="prepend"></slot>
     <slot v-if="searchIcon" name="search-icon">
       <i class="search-icon search"></i>
     </slot>
+    <slot name="prepend-inner"></slot>
     <input
       ref="inputRef"
       type="search"
@@ -14,12 +16,14 @@
       @blur="hasFocus = false"
       @keydown="onKeydown"
     />
+    <slot name="append"></slot>
     <slot v-if="showShortcutIcon" name="shortcut-icon">
       <i class="search-icon shortcut" title='Press "/" to search'></i>
     </slot>
     <slot v-if="showClearIcon" name="clear-icon" :clear="clear">
-      <i class="search-icon clear" @mousedown="clear"></i>
+      <button class="search-icon clear" aria-label="Clear" @mousedown="clear" @keydown.space.enter="clear"></button>
     </slot>
+    <slot name="append-outer"></slot>
   </div>
 </template>
 
@@ -65,6 +69,7 @@ export default defineComponent({
     clearOnEsc: defaultBoolean(),
     blurOnEsc: defaultBoolean(),
     selectOnFocus: defaultBoolean(),
+    shortcutListenerEnabled: defaultBoolean(),
     shortcutKey: {
       type: String as PropType<KeyboardEvent['key']>,
       default: '/'
@@ -133,7 +138,7 @@ export default defineComponent({
     const removeDocumentKeydown = () => window.document.removeEventListener('keydown', onDocumentKeydown)
 
     watch(
-      () => props.shortcutIcon,
+      () => props.shortcutListenerEnabled,
       (nV) => {
         if (nV) {
           window.document.addEventListener('keydown', onDocumentKeydown)

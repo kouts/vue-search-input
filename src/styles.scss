@@ -80,18 +80,23 @@ $active-color: #1ea7fd;
       background-color: lighten($icon-color, 5%);
     }
     &.clear {
-      right: 8px;
-      bottom: 8px;
+      right: 5px;
+      bottom: 7px;
       cursor: pointer;
       z-index: 10;
       height: 18px;
       box-sizing: border-box;
       display: block;
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       border: 2px solid transparent;
       border-radius: 40px;
-
+      background: none;
+      padding: 0px;
+      outline: none;
+      &:focus {
+        background: darken($input-background, 4%);
+      }
     }
     &.clear::after,
     &.clear::before {
@@ -104,8 +109,8 @@ $active-color: #1ea7fd;
       background: $icon-color;
       transform: rotate(45deg);
       border-radius: 5px;
-      top: 8px;
-      left: 1px;
+      top: 9px;
+      left: 2px;
     }
     &.clear::after {
       transform: rotate(-45deg);

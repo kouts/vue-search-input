@@ -73,9 +73,11 @@ The default class for the wrapper `div` is `search-input-wrapper` you can overri
 | searchIcon | boolean | Displays the "search" icon | true |
 | shortcutIcon | boolean | Enables the functionality for the `/` keypress and displays the "shortcut" icon | true |
 | clearIcon | boolean | Displays the "clear text" icon | true |
+| hideShortcutIconOnBlur | boolean | Whether to hide the shortcut icon when the input loses focus | true |
 | clearOnEsc | boolean | Whether to clear the input field when the `esc` key is pressed | true |
 | blurOnEsc | boolean | Whether to takes the focus out of the input field when the `esc` key is pressed | true |
 | selectOnFocus | boolean | Selects the input's text upon `/` keypress | true |
+| shortcutListenerEnabled | boolean | Enables the shortcut functionality | true |
 | shortcutKey | string | The `key` for the shortcut functionality | `/` |
 
 ## Slots
@@ -87,3 +89,7 @@ The default class for the wrapper `div` is `search-input-wrapper` you can overri
 | search-icon | Slot for the search icon | - |
 | shortcut-icon | Slot for the shortcut icon | - |
 | clear-icon | Slot for the clear icon | `clear: Function` the function that clears the input |
+| append | Adds an item inside the input wrapper, before the search icon | - |
+| append-inner | Adds an item inside the input wrapper, after the search icon | - |
+| prepend | Adds an item inside the input wrapper directly after the input element | - |
+| prepend-outer | Adds an item inside the input wrapper directly after the clear icon | - |

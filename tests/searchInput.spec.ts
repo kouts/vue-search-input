@@ -2,6 +2,8 @@ import { mount } from '@vue/test-utils'
 import SearchInput from '@/SearchInput.vue'
 import { fieldType } from '@/SearchInput.types'
 
+const INPUT_SELECTOR = 'input[data-search-input="true"]'
+
 const createWrapper = (opts?: Record<string, unknown>) => {
   return mount(SearchInput, opts)
 }
@@ -101,9 +103,9 @@ describe('SearchInput.vue', () => {
       }
     })
 
-    const i = await wrapper.find('i.search-icon.clear')
+    const button = await wrapper.find('button.search-icon.clear')
 
-    await i.trigger('mousedown')
+    await button.trigger('mousedown')
 
     expect(wrapper.emitted()['update:modelValue'][0]).toEqual([''])
   })
@@ -132,7 +134,7 @@ describe('SearchInput.vue', () => {
     const event = new KeyboardEvent('keydown', { key: '/' })
     document.dispatchEvent(event)
 
-    const input = wrapper.find('input[data-search-input="true"]')
+    const input = wrapper.find(INPUT_SELECTOR)
 
     expect(input.element).toBe(document.activeElement)
   })
@@ -145,12 +147,12 @@ describe('SearchInput.vue', () => {
     expect(removeSpy).toHaveBeenCalled()
   })
 
-  it('removes the keydown event listener when shortcutIcon prop turns false', async () => {
+  it('removes the keydown event listener when shortcutListenerEnabled prop turns false', async () => {
     const removeSpy = jest.spyOn(document, 'removeEventListener').mockImplementation()
     const wrapper = createWrapper()
 
     wrapper.setProps({
-      shortcutIcon: false
+      shortcutListenerEnabled: false
     })
 
     expect(removeSpy).toHaveBeenCalled()
@@ -166,7 +168,7 @@ describe('SearchInput.vue', () => {
     const event = new KeyboardEvent('keydown', { key: '/' })
     document.dispatchEvent(event)
 
-    const input = await wrapper.find('input[data-search-input="true"]')
+    const input = await wrapper.find(INPUT_SELECTOR)
 
     const inputEl = input.element as HTMLInputElement
 
@@ -177,7 +179,7 @@ describe('SearchInput.vue', () => {
   it('focuses the input text when the "/" key is pressed', async () => {
     const wrapper = createWrapperContainer()
 
-    const inputs = await wrapper.findAll('input[data-search-input="true"]')
+    const inputs = await wrapper.findAll(INPUT_SELECTOR)
 
     Object.defineProperty(inputs[0].element as HTMLInputElement, 'offsetWidth', { value: 10, writable: true })
     Object.defineProperty(inputs[1].element as HTMLInputElement, 'offsetWidth', { value: 10, writable: true })
@@ -198,5 +200,57 @@ describe('SearchInput.vue', () => {
     const i = await wrapper.find('i.search-icon.shortcut')
 
     expect(i).toBeTruthy()
+  })
+
+  it('renders the prepend slot', async () => {
+    const wrapper = createWrapper({
+      slots: {
+        prepend: '<div class="prepend">prepend content</div>'
+      }
+    })
+
+    const prepend = wrapper.find('.prepend')
+    const i = wrapper.find('i.search-icon.search')
+
+    expect(prepend.element.nextElementSibling).toEqual(i.element)
+  })
+
+  it('renders the prepend-inner slot', async () => {
+    const wrapper = createWrapper({
+      slots: {
+        'prepend-inner': '<div class="prepend-inner">prepend-inner content</div>'
+      }
+    })
+
+    const prependInner = wrapper.find('.prepend-inner')
+    const i = wrapper.find('i.search-icon.search')
+
+    expect(i.element.nextElementSibling).toEqual(prependInner.element)
+  })
+
+  it('renders the append slot', async () => {
+    const wrapper = createWrapper({
+      slots: {
+        append: '<div class="append">append content</div>'
+      }
+    })
+
+    const append = wrapper.find('.append')
+    const i = wrapper.find('i.search-icon.shortcut')
+
+    expect(append.element.nextElementSibling).toEqual(i.element)
+  })
+
+  it('renders the append-outer slot', async () => {
+    const wrapper = createWrapper({
+      slots: {
+        'append-outer': '<div class="append-outer">append-outer content</div>'
+      }
+    })
+
+    const appendOuter = wrapper.find('.append-outer')
+    const i = wrapper.find('i.search-icon.shortcut')
+
+    expect(i.element.nextElementSibling).toEqual(appendOuter.element)
   })
 })
