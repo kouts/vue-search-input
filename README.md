@@ -17,6 +17,10 @@ The `SearchInput` component displays a search input with some additional feature
 **_Important:_** It is advisable that you include the `SearchInput` component **only once** on each page.  
  In case multiple `SearchInput` components are present, the first one being displayed will take focus precedence upon the `/` keypress.
 
+**Demo with examples**
+
+https://vue-search-input.vercel.app
+
 ## Installation
 
 ```bash
