@@ -71,13 +71,13 @@ The default class for the wrapper `div` is `search-input-wrapper` you can overri
 | modelValue (v-model) | string | The input's value | `''` |
 | wrapperClass | string | The default CSS class of the wrapper div | `search-input-wrapper` |
 | searchIcon | boolean | Displays the "search" icon | true |
-| shortcutIcon | boolean | Enables the functionality for the `/` keypress and displays the "shortcut" icon | true |
+| shortcutIcon | boolean | Displays the "shortcut" icon | true |
 | clearIcon | boolean | Displays the "clear text" icon | true |
 | hideShortcutIconOnBlur | boolean | Whether to hide the shortcut icon when the input loses focus | true |
 | clearOnEsc | boolean | Whether to clear the input field when the `esc` key is pressed | true |
 | blurOnEsc | boolean | Whether to takes the focus out of the input field when the `esc` key is pressed | true |
 | selectOnFocus | boolean | Selects the input's text upon `/` keypress | true |
-| shortcutListenerEnabled | boolean | Enables the shortcut functionality | true |
+| shortcutListenerEnabled | boolean | Enables the functionality for the `/` keypress | true |
 | shortcutKey | string | The `key` for the shortcut functionality | `/` |
 
 ## Slots
