@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/kouts/vue-search-input/compare/v1.1.0...v1.1.1) (2022-01-30)
+
+
+### Bug Fixes
+
+* fixed focus in case of multiple occurrences ([86a7532](https://github.com/kouts/vue-search-input/commit/86a753201eb7e35fe7f50455aae0a73a18da82ce))
+
 # [1.1.0](https://github.com/kouts/vue-search-input/compare/v1.0.4...v1.1.0) (2022-01-23)
 
 

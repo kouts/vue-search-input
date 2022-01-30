@@ -84,7 +84,7 @@ const _sfc_main = defineComponent({
     const onDocumentKeydown = (e) => {
       if (e.key === props.shortcutKey && e.target !== inputRef.value && window.document.activeElement !== inputRef.value && e.target instanceof HTMLInputElement === false && e.target instanceof HTMLSelectElement === false && e.target instanceof HTMLTextAreaElement === false) {
         e.preventDefault();
-        const allVisibleSearchInputs = [].slice.call(document.querySelectorAll("[data-search-input]")).filter((el) => {
+        const allVisibleSearchInputs = [].slice.call(document.querySelectorAll('[data-search-input="true"]:not([data-shortcut-enabled="false"])')).filter((el) => {
           return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
         });
         const elToFocus = allVisibleSearchInputs.length > 1 ? allVisibleSearchInputs[0] : inputRef.value;
@@ -118,7 +118,7 @@ const _sfc_main = defineComponent({
   }
 });
 const _hoisted_1 = /* @__PURE__ */ createElementVNode("i", { class: "search-icon search" }, null, -1);
-const _hoisted_2 = ["value"];
+const _hoisted_2 = ["data-shortcut-enabled", "value"];
 const _hoisted_3 = /* @__PURE__ */ createElementVNode("i", {
   class: "search-icon shortcut",
   title: 'Press "/" to search'
@@ -134,6 +134,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       ref: "inputRef",
       type: "search",
       "data-search-input": "true",
+      "data-shortcut-enabled": _ctx.shortcutListenerEnabled,
       value: _ctx.modelValue
     }, _ctx.attrsWithoutStyles, {
       onInput: _cache[0] || (_cache[0] = (...args) => _ctx.onInput && _ctx.onInput(...args)),
