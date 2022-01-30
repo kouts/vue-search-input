@@ -9,6 +9,7 @@
       ref="inputRef"
       type="search"
       data-search-input="true"
+      :data-shortcut-enabled="shortcutListenerEnabled"
       :value="modelValue"
       v-bind="attrsWithoutStyles"
       @input="onInput"
@@ -125,7 +126,7 @@ export default defineComponent({
       ) {
         e.preventDefault()
         const allVisibleSearchInputs = [].slice
-          .call(document.querySelectorAll('[data-search-input]'))
+          .call(document.querySelectorAll('[data-search-input="true"]:not([data-shortcut-enabled="false"])'))
           .filter((el: HTMLElement) => {
             return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length)
           })
