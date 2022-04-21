@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/kouts/vue-search-input/compare/v1.1.1...v1.1.2) (2022-04-21)
+
+
+### Bug Fixes
+
+* updated npm packages ([6b3c536](https://github.com/kouts/vue-search-input/commit/6b3c536bc6f6bec38852ed28e6a9fb1c90fd844b))
+
 ## [1.1.1](https://github.com/kouts/vue-search-input/compare/v1.1.0...v1.1.1) (2022-01-30)
 
 
