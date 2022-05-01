@@ -20,7 +20,8 @@
     ".": {
       "import": "./dist/vue-search-input.es.js",
       "require": "./dist/vue-search-input.umd.js"
-    }
+    },
+    "./dist/styles.css": "./dist/styles.css"
   },
   "unpkg": "dist/vue-search-input.umd.js",
   "sideEffects": false,
