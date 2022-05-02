@@ -1,6 +1,6 @@
-import { mount } from '@vue/test-utils'
 import SearchInput from '@/SearchInput.vue'
 import { fieldType } from '@/SearchInput.types'
+import { mount } from '@vue/test-utils'
 
 const INPUT_SELECTOR = 'input[data-search-input="true"]'
 
@@ -132,6 +132,7 @@ describe('SearchInput.vue', () => {
     })
 
     const event = new KeyboardEvent('keydown', { key: '/' })
+
     document.dispatchEvent(event)
 
     const input = wrapper.find(INPUT_SELECTOR)
@@ -166,6 +167,7 @@ describe('SearchInput.vue', () => {
     })
 
     const event = new KeyboardEvent('keydown', { key: '/' })
+
     document.dispatchEvent(event)
 
     const input = await wrapper.find(INPUT_SELECTOR)
@@ -185,6 +187,7 @@ describe('SearchInput.vue', () => {
     Object.defineProperty(inputs[1].element as HTMLInputElement, 'offsetWidth', { value: 10, writable: true })
 
     const event = new KeyboardEvent('keydown', { key: '/' })
+
     document.dispatchEvent(event)
 
     expect(inputs[0].element).toBe(document.activeElement)
