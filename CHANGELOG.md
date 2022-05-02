@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/kouts/vue-search-input/compare/v1.1.2...v1.1.3) (2022-05-02)
+
+
+### Bug Fixes
+
+* added css to exports, removed duplicate style ([236c39f](https://github.com/kouts/vue-search-input/commit/236c39ff0b9a15194b5b1de9aee666bfc5529f5c))
+
 ## [1.1.2](https://github.com/kouts/vue-search-input/compare/v1.1.1...v1.1.2) (2022-04-21)
 
 
