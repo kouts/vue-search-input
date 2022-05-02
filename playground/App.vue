@@ -1,8 +1,8 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import { ref, Ref } from 'vue'
 import SearchInput from '@/SearchInput.vue'
+import { Ref, ref } from 'vue'
 
 type Refs = {
   [key in string]: Ref
@@ -32,6 +32,7 @@ const refs: Refs = {
 
 const showProps = (refName: string) => {
   const cmp = refs[refName].value ?? {}
+
   return cmp?._?.props
 }
 

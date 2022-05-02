@@ -1,8 +1,8 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
 import del from 'rollup-plugin-delete'
-import { resolve } from 'path'
 import dts from 'vite-plugin-dts'
+import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite'
+import { resolve } from 'path'
 
 const alias = {
   '@': resolve(__dirname, './src'),

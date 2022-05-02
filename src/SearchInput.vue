@@ -29,14 +29,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref, computed, onBeforeUnmount, watch } from 'vue'
-import { fieldType, FieldType } from './SearchInput.types'
+import { FieldType, fieldType } from './SearchInput.types'
+import { PropType, computed, defineComponent, onBeforeUnmount, ref, watch } from 'vue'
 
 const filterObject = (obj: { [key: string]: unknown }, properties: (string | number)[], remove = true) => {
   const res: { [key: string]: unknown } = {}
 
   Object.keys(obj).forEach((objAttr) => {
     const condition = remove ? properties.indexOf(objAttr) === -1 : properties.indexOf(objAttr) >= 0
+
     if (condition) {
       res[objAttr] = obj[objAttr]
     }
@@ -85,7 +86,9 @@ export default defineComponent({
 
     const attrsStyles = computed(() => {
       const res = filterObject(attrs, ['class', 'style'], false)
+
       if (!res.class) res.class = props.wrapperClass
+
       return res
     })
 
@@ -94,6 +97,7 @@ export default defineComponent({
     const showShortcutIcon = computed(() => {
       if (props.shortcutIcon && !hasFocus.value && !props.hideShortcutIconOnBlur) return true
       if (props.shortcutIcon && !hasFocus.value && props.modelValue.length === 0) return true
+
       return false
     })
 
@@ -110,6 +114,7 @@ export default defineComponent({
         props.clearOnEsc && clear()
         if (props.blurOnEsc) {
           const el = inputRef.value as HTMLInputElement
+
           el.blur()
         }
       }
@@ -131,6 +136,7 @@ export default defineComponent({
             return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length)
           })
         const elToFocus = allVisibleSearchInputs.length > 1 ? allVisibleSearchInputs[0] : inputRef.value
+
         elToFocus?.focus()
         if (props.selectOnFocus) elToFocus?.select()
       }
