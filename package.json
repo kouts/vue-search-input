@@ -58,7 +58,7 @@
     "babel-jest": "^27.5.1",
     "bootstrap": "^5.1.3",
     "eslint": "^8.14.0",
-    "eslint-config-kouts": "file:../eslint-config-kouts",
+    "eslint-config-kouts": "^2.1.2",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-html": "^6.2.0",
