@@ -1,3 +1,12 @@
+## [1.1.4](https://github.com/kouts/vue-search-input/compare/v1.1.3...v1.1.4) (2022-05-02)
+
+
+### Bug Fixes
+
+* fixed eslint config package location ([076ccfa](https://github.com/kouts/vue-search-input/commit/076ccfa07df639bb5c9d4b858ef5e6cece335224))
+* removed extraneus height prop ([cd94519](https://github.com/kouts/vue-search-input/commit/cd945197e9f677f725bc93bc5960003f7d39e688))
+* updated eslint config and npm packages ([4349370](https://github.com/kouts/vue-search-input/commit/434937086168700d64d9203882b449235a3758a0))
+
 ## [1.1.3](https://github.com/kouts/vue-search-input/compare/v1.1.2...v1.1.3) (2022-05-02)
 
 
