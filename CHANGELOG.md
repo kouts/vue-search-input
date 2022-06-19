@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/kouts/vue-search-input/compare/v1.1.5...v1.1.6) (2022-06-19)
+
+
+### Bug Fixes
+
+* fixed props table head ([517e893](https://github.com/kouts/vue-search-input/commit/517e8935c5f2ea197b1b68549fa41c313077a318))
+
 ## [1.1.5](https://github.com/kouts/vue-search-input/compare/v1.1.4...v1.1.5) (2022-06-19)
 
 
