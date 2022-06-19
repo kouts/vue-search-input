@@ -69,7 +69,7 @@ The default class for the wrapper `div` is `search-input-wrapper` you can overri
 | update:modelValue | The updated bound model | `string`
 
 ## Props
-| Name | Type | Default | Description
+| Name | Type | Description | Default
 | :--- | :--- | :--- | :--- |
 | type | string | The type of the input field. Allowed types are `search` and `text` | `search` |
 | modelValue (v-model) | string | The input's value | `''` |
