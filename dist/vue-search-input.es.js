@@ -1,30 +1,16 @@
-import { defineComponent, ref, computed, watch, onBeforeUnmount, openBlock, createElementBlock, normalizeProps, guardReactiveProps, renderSlot, createCommentVNode, createElementVNode, mergeProps, withKeys } from "vue";
-const fieldType = ["search", "text"];
-var _export_sfc = (sfc, props) => {
-  const target = sfc.__vccOpts || sfc;
-  for (const [key, val] of props) {
-    target[key] = val;
-  }
-  return target;
-};
-const filterObject = (obj, properties, remove = true) => {
-  const res = {};
-  Object.keys(obj).forEach((objAttr) => {
-    const condition = remove ? properties.indexOf(objAttr) === -1 : properties.indexOf(objAttr) >= 0;
-    if (condition) {
-      res[objAttr] = obj[objAttr];
-    }
-  });
-  return res;
-};
-const defaultBoolean = (val = true) => ({ type: Boolean, default: val });
-const _sfc_main = defineComponent({
-  inheritAttrs: false,
+import { defineComponent as k, ref as I, computed as i, watch as b, onBeforeUnmount as K, openBlock as V, createElementBlock as B, normalizeProps as C, guardReactiveProps as L, renderSlot as u, createCommentVNode as y, createElementVNode as d, mergeProps as H, withKeys as M } from "vue";
+const P = ["search", "text"], g = (e, t, l = !0) => {
+  const r = {};
+  return Object.keys(e).forEach((o) => {
+    (l ? t.indexOf(o) === -1 : t.indexOf(o) >= 0) && (r[o] = e[o]);
+  }), r;
+}, a = (e = !0) => ({ type: Boolean, default: e }), R = k({
+  inheritAttrs: !1,
   props: {
     type: {
       type: String,
       default: "search",
-      validator: (prop) => fieldType.includes(prop)
+      validator: (e) => P.includes(e)
     },
     modelValue: {
       type: String,
@@ -34,131 +20,100 @@ const _sfc_main = defineComponent({
       type: String,
       default: "search-input-wrapper"
     },
-    searchIcon: defaultBoolean(),
-    shortcutIcon: defaultBoolean(),
-    clearIcon: defaultBoolean(),
-    hideShortcutIconOnBlur: defaultBoolean(),
-    clearOnEsc: defaultBoolean(),
-    blurOnEsc: defaultBoolean(),
-    selectOnFocus: defaultBoolean(),
-    shortcutListenerEnabled: defaultBoolean(),
+    searchIcon: a(),
+    shortcutIcon: a(),
+    clearIcon: a(),
+    hideShortcutIconOnBlur: a(),
+    clearOnEsc: a(),
+    blurOnEsc: a(),
+    selectOnFocus: a(),
+    shortcutListenerEnabled: a(),
     shortcutKey: {
       type: String,
       default: "/"
     }
   },
   emits: ["update:modelValue"],
-  setup(props, { emit, attrs }) {
-    const hasFocus = ref(false);
-    const inputRef = ref(null);
-    const attrsWithoutStyles = computed(() => filterObject(attrs, ["class", "style"]));
-    const attrsStyles = computed(() => {
-      const res = filterObject(attrs, ["class", "style"], false);
-      if (!res.class)
-        res.class = props.wrapperClass;
-      return res;
-    });
-    const showClearIcon = computed(() => !!(props.clearIcon && props.modelValue.length > 0));
-    const showShortcutIcon = computed(() => {
-      if (props.shortcutIcon && !hasFocus.value && !props.hideShortcutIconOnBlur)
-        return true;
-      if (props.shortcutIcon && !hasFocus.value && props.modelValue.length === 0)
-        return true;
-      return false;
-    });
-    const clear = () => {
-      emit("update:modelValue", "");
-    };
-    const onInput = (e) => {
-      emit("update:modelValue", e.target.value);
-    };
-    const onKeydown = (e) => {
-      if (e.key === "Escape") {
-        props.clearOnEsc && clear();
-        if (props.blurOnEsc) {
-          const el = inputRef.value;
-          el.blur();
-        }
+  setup(e, { emit: t, attrs: l }) {
+    const r = I(!1), o = I(null), f = i(() => g(l, ["class", "style"])), s = i(() => {
+      const n = g(l, ["class", "style"], !1);
+      return n.class || (n.class = e.wrapperClass), n;
+    }), E = i(() => !!(e.clearIcon && e.modelValue.length > 0)), S = i(() => !!(e.shortcutIcon && !r.value && !e.hideShortcutIconOnBlur || e.shortcutIcon && !r.value && e.modelValue.length === 0)), m = () => {
+      t("update:modelValue", "");
+    }, O = (n) => {
+      t("update:modelValue", n.target.value);
+    }, $ = (n) => {
+      n.key === "Escape" && (e.clearOnEsc && m(), e.blurOnEsc && o.value.blur());
+    }, w = (n) => {
+      if (n.key === e.shortcutKey && n.target !== o.value && window.document.activeElement !== o.value && !(n.target instanceof HTMLInputElement) && !(n.target instanceof HTMLSelectElement) && !(n.target instanceof HTMLTextAreaElement)) {
+        n.preventDefault();
+        const h = [].slice.call(document.querySelectorAll('[data-search-input="true"]:not([data-shortcut-enabled="false"])')).filter((p) => !!(p.offsetWidth || p.offsetHeight || p.getClientRects().length)), c = h.length > 1 ? h[0] : o.value;
+        c == null || c.focus(), e.selectOnFocus && (c == null || c.select());
       }
-    };
-    const onDocumentKeydown = (e) => {
-      if (e.key === props.shortcutKey && e.target !== inputRef.value && window.document.activeElement !== inputRef.value && e.target instanceof HTMLInputElement === false && e.target instanceof HTMLSelectElement === false && e.target instanceof HTMLTextAreaElement === false) {
-        e.preventDefault();
-        const allVisibleSearchInputs = [].slice.call(document.querySelectorAll('[data-search-input="true"]:not([data-shortcut-enabled="false"])')).filter((el) => {
-          return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
-        });
-        const elToFocus = allVisibleSearchInputs.length > 1 ? allVisibleSearchInputs[0] : inputRef.value;
-        elToFocus == null ? void 0 : elToFocus.focus();
-        if (props.selectOnFocus)
-          elToFocus == null ? void 0 : elToFocus.select();
-      }
-    };
-    const removeDocumentKeydown = () => window.document.removeEventListener("keydown", onDocumentKeydown);
-    watch(() => props.shortcutListenerEnabled, (nV) => {
-      if (nV) {
-        window.document.addEventListener("keydown", onDocumentKeydown);
-      } else {
-        removeDocumentKeydown();
-      }
-    }, { immediate: true });
-    onBeforeUnmount(() => {
-      removeDocumentKeydown();
-    });
-    return {
-      inputRef,
-      hasFocus,
-      clear,
-      onInput,
-      onKeydown,
-      attrsStyles,
-      attrsWithoutStyles,
-      showClearIcon,
-      showShortcutIcon
+    }, v = () => window.document.removeEventListener("keydown", w);
+    return b(() => e.shortcutListenerEnabled, (n) => {
+      n ? window.document.addEventListener("keydown", w) : v();
+    }, { immediate: !0 }), K(() => {
+      v();
+    }), {
+      inputRef: o,
+      hasFocus: r,
+      clear: m,
+      onInput: O,
+      onKeydown: $,
+      attrsStyles: s,
+      attrsWithoutStyles: f,
+      showClearIcon: E,
+      showShortcutIcon: S
     };
   }
-});
-const _hoisted_1 = /* @__PURE__ */ createElementVNode("i", { class: "search-icon search" }, null, -1);
-const _hoisted_2 = ["data-shortcut-enabled", "value"];
-const _hoisted_3 = /* @__PURE__ */ createElementVNode("i", {
+}), D = (e, t) => {
+  const l = e.__vccOpts || e;
+  for (const [r, o] of t)
+    l[r] = o;
+  return l;
+}, F = /* @__PURE__ */ d("i", { class: "search-icon search" }, null, -1), W = ["data-shortcut-enabled", "value"], N = /* @__PURE__ */ d("i", {
   class: "search-icon shortcut",
   title: 'Press "/" to search'
 }, null, -1);
-function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("div", normalizeProps(guardReactiveProps(_ctx.attrsStyles)), [
-    renderSlot(_ctx.$slots, "prepend"),
-    _ctx.searchIcon ? renderSlot(_ctx.$slots, "search-icon", { key: 0 }, () => [
-      _hoisted_1
-    ]) : createCommentVNode("", true),
-    renderSlot(_ctx.$slots, "prepend-inner"),
-    createElementVNode("input", mergeProps({
+function T(e, t, l, r, o, f) {
+  return V(), B("div", C(L(e.attrsStyles)), [
+    u(e.$slots, "prepend"),
+    e.searchIcon ? u(e.$slots, "search-icon", { key: 0 }, () => [
+      F
+    ]) : y("", !0),
+    u(e.$slots, "prepend-inner"),
+    d("input", H({
       ref: "inputRef",
       type: "search",
       "data-search-input": "true",
-      "data-shortcut-enabled": _ctx.shortcutListenerEnabled,
-      value: _ctx.modelValue
-    }, _ctx.attrsWithoutStyles, {
-      onInput: _cache[0] || (_cache[0] = (...args) => _ctx.onInput && _ctx.onInput(...args)),
-      onFocus: _cache[1] || (_cache[1] = ($event) => _ctx.hasFocus = true),
-      onBlur: _cache[2] || (_cache[2] = ($event) => _ctx.hasFocus = false),
-      onKeydown: _cache[3] || (_cache[3] = (...args) => _ctx.onKeydown && _ctx.onKeydown(...args))
-    }), null, 16, _hoisted_2),
-    renderSlot(_ctx.$slots, "append"),
-    _ctx.showShortcutIcon ? renderSlot(_ctx.$slots, "shortcut-icon", { key: 1 }, () => [
-      _hoisted_3
-    ]) : createCommentVNode("", true),
-    _ctx.showClearIcon ? renderSlot(_ctx.$slots, "clear-icon", {
+      "data-shortcut-enabled": e.shortcutListenerEnabled,
+      value: e.modelValue
+    }, e.attrsWithoutStyles, {
+      onInput: t[0] || (t[0] = (...s) => e.onInput && e.onInput(...s)),
+      onFocus: t[1] || (t[1] = (s) => e.hasFocus = !0),
+      onBlur: t[2] || (t[2] = (s) => e.hasFocus = !1),
+      onKeydown: t[3] || (t[3] = (...s) => e.onKeydown && e.onKeydown(...s))
+    }), null, 16, W),
+    u(e.$slots, "append"),
+    e.showShortcutIcon ? u(e.$slots, "shortcut-icon", { key: 1 }, () => [
+      N
+    ]) : y("", !0),
+    e.showClearIcon ? u(e.$slots, "clear-icon", {
       key: 2,
-      clear: _ctx.clear
+      clear: e.clear
     }, () => [
-      createElementVNode("button", {
+      d("button", {
         class: "search-icon clear",
         "aria-label": "Clear",
-        onMousedown: _cache[4] || (_cache[4] = (...args) => _ctx.clear && _ctx.clear(...args)),
-        onKeydown: _cache[5] || (_cache[5] = withKeys((...args) => _ctx.clear && _ctx.clear(...args), ["space", "enter"]))
+        onMousedown: t[4] || (t[4] = (...s) => e.clear && e.clear(...s)),
+        onKeydown: t[5] || (t[5] = M((...s) => e.clear && e.clear(...s), ["space", "enter"]))
       }, null, 32)
-    ]) : createCommentVNode("", true),
-    renderSlot(_ctx.$slots, "append-outer")
+    ]) : y("", !0),
+    u(e.$slots, "append-outer")
   ], 16);
 }
-var SearchInput = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render]]);
-export { SearchInput as default };
+const z = /* @__PURE__ */ D(R, [["render", T]]);
+export {
+  z as default
+};
