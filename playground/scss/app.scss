@@ -1,4 +1,4 @@
-// 4. Include the basic Bootstrap CSS
+// 6. Optionally include any other parts as needed
 @import "bootstrap/scss/_utilities";
 @import "bootstrap/scss/_reboot";
 @import "bootstrap/scss/_type";
@@ -7,13 +7,13 @@
 @import "bootstrap/scss/_grid";
 @import "bootstrap/scss/_helpers";
 
-// 4.1.1 Include additional Bootstrap CSS as needed
+// 6.1 Include additional Bootstrap CSS as needed
 @import "bootstrap/scss/_buttons";
 
-// 5. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+// 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
 @import "bootstrap/scss/utilities/_api";
 
-// 6. Add additional custom code here
+// 8. Add additional custom code here
 .btn-primary {
   color: $white;
   &:hover {

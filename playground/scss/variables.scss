@@ -12,5 +12,10 @@ $input-icon-color: darken(#f6f9fc, 30%);
 
 // 3. Include remainder of required Bootstrap stylesheets
 @import "bootstrap/scss/_variables";
+
+// 4. Include any default map overrides here
+
+// 5. Include remainder of required parts
+@import "bootstrap/scss/_maps";
 @import "bootstrap/scss/_mixins";
 @import "bootstrap/scss/_root";
