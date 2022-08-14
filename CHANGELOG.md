@@ -1,3 +1,10 @@
+## [1.1.9](https://github.com/kouts/vue-search-input/compare/v1.1.8...v1.1.9) (2022-08-14)
+
+
+### Bug Fixes
+
+* fixed bootstrap sass ([89e1254](https://github.com/kouts/vue-search-input/commit/89e125494250af185ea1d2f4d8e11d0e7ec1cf9a))
+
 ## [1.1.8](https://github.com/kouts/vue-search-input/compare/v1.1.7...v1.1.8) (2022-07-23)
 
 

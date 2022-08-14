@@ -51,9 +51,13 @@ const P = ["search", "text"], g = (e, t, l = !0) => {
         c == null || c.focus(), e.selectOnFocus && (c == null || c.select());
       }
     }, v = () => window.document.removeEventListener("keydown", w);
-    return b(() => e.shortcutListenerEnabled, (n) => {
-      n ? window.document.addEventListener("keydown", w) : v();
-    }, { immediate: !0 }), K(() => {
+    return b(
+      () => e.shortcutListenerEnabled,
+      (n) => {
+        n ? window.document.addEventListener("keydown", w) : v();
+      },
+      { immediate: !0 }
+    ), K(() => {
       v();
     }), {
       inputRef: o,
