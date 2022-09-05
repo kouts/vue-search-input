@@ -1,3 +1,11 @@
+## [1.1.10](https://github.com/kouts/vue-search-input/compare/v1.1.9...v1.1.10) (2022-09-05)
+
+
+### Bug Fixes
+
+* reverted vue3-jest version ([f285a28](https://github.com/kouts/vue-search-input/commit/f285a287b86c28f5cef40583dbdb29caa9a10106))
+* updated npm packages ([904910e](https://github.com/kouts/vue-search-input/commit/904910e5a1b611649b15bd8669b972f58597821f))
+
 ## [1.1.9](https://github.com/kouts/vue-search-input/compare/v1.1.8...v1.1.9) (2022-08-14)
 
 
