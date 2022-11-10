@@ -1,3 +1,11 @@
+## [1.1.11](https://github.com/kouts/vue-search-input/compare/v1.1.10...v1.1.11) (2022-11-10)
+
+
+### Bug Fixes
+
+* updated eslint config ([2ac45dc](https://github.com/kouts/vue-search-input/commit/2ac45dcfdff9b0a07b9abb436e8352d53d4d9e35))
+* updated npm packages ([4480cc2](https://github.com/kouts/vue-search-input/commit/4480cc2236657f54a01952b4299d3d0a70f706c3))
+
 ## [1.1.10](https://github.com/kouts/vue-search-input/compare/v1.1.9...v1.1.10) (2022-09-05)
 
 
