@@ -19,7 +19,7 @@
     />
     <slot name="append"></slot>
     <slot v-if="showShortcutIcon" name="shortcut-icon">
-      <i class="search-icon shortcut" title='Press "/" to search'></i>
+      <i class="search-icon shortcut" :title="'Press &quot;/&quot; to search'"></i>
     </slot>
     <slot v-if="showClearIcon" name="clear-icon" :clear="clear">
       <button class="search-icon clear" aria-label="Clear" @mousedown="clear" @keydown.space.enter="clear"></button>

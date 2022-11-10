@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ['eslint-config-kouts/vue3-typescript']
+  extends: ['@kouts/eslint-config/vue3-typescript']
 }
