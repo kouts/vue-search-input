@@ -1,6 +1,6 @@
 import { FieldType } from './SearchInput.types';
 import { PropType } from 'vue';
-declare const _sfc_main: import("vue").DefineComponent<{
+declare const _default: import("vue").DefineComponent<{
     type: {
         type: PropType<"search" | "text">;
         default: string;
@@ -129,5 +129,5 @@ declare const _sfc_main: import("vue").DefineComponent<{
     selectOnFocus: boolean;
     shortcutListenerEnabled: boolean;
     shortcutKey: string;
-}>;
-export default _sfc_main;
+}, {}>;
+export default _default;
