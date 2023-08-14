@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node: [16]
+        node: [18]
 
     steps:
       - name: Checkout 🛎
@@ -35,7 +35,7 @@ jobs:
         run: npm run lint-fix
 
       - name: Typecheck 👀
-        run: npm run typecheck       
+        run: npm run typecheck
 
       - name: Run tests 🧪
         run: npm run test:unit-coverage --if-present
