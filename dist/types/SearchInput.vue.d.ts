@@ -2,7 +2,7 @@ import { FieldType } from './SearchInput.types';
 import { PropType } from 'vue';
 declare const _default: import("vue").DefineComponent<{
     type: {
-        type: PropType<"search" | "text">;
+        type: PropType<"search" | "text" | "password">;
         default: string;
         validator: (prop: FieldType) => boolean;
     };
@@ -66,7 +66,7 @@ declare const _default: import("vue").DefineComponent<{
     showShortcutIcon: import("vue").ComputedRef<boolean>;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "update:modelValue"[], "update:modelValue", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     type: {
-        type: PropType<"search" | "text">;
+        type: PropType<"search" | "text" | "password">;
         default: string;
         validator: (prop: FieldType) => boolean;
     };
@@ -117,7 +117,7 @@ declare const _default: import("vue").DefineComponent<{
 }>> & {
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
 }, {
-    type: "search" | "text";
+    type: "search" | "text" | "password";
     modelValue: string;
     wrapperClass: string;
     searchIcon: boolean;

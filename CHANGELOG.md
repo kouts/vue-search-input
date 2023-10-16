@@ -1,3 +1,10 @@
+## [1.1.13](https://github.com/kouts/vue-search-input/compare/v1.1.12...v1.1.13) (2023-10-16)
+
+
+### Bug Fixes
+
+* added password as a field type ([975f540](https://github.com/kouts/vue-search-input/commit/975f540130025db13aa74caeba546b9f9b750bc7))
+
 ## [1.1.12](https://github.com/kouts/vue-search-input/compare/v1.1.11...v1.1.12) (2023-08-14)
 
 

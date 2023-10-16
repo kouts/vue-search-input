@@ -1,5 +1,5 @@
 import { defineComponent as k, ref as I, computed as i, watch as b, onBeforeUnmount as K, openBlock as V, createElementBlock as B, normalizeProps as C, guardReactiveProps as L, renderSlot as u, createCommentVNode as y, createElementVNode as d, mergeProps as H, withKeys as M } from "vue";
-const P = ["search", "text"], g = (e, t, l = !0) => {
+const P = ["search", "text", "password"], g = (e, t, l = !0) => {
   const r = {};
   return Object.keys(e).forEach((o) => {
     (l ? t.indexOf(o) === -1 : t.indexOf(o) >= 0) && (r[o] = e[o]);
