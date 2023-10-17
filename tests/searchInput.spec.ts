@@ -44,7 +44,7 @@ describe('SearchInput.vue', () => {
       }
     })
 
-    const input = wrapper.find(typeProp)
+    const input = wrapper.find(`input[type="${typeProp}"]`)
 
     expect(input).toBeTruthy()
   })

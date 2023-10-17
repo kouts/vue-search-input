@@ -7,7 +7,7 @@
     <slot name="prepend-inner"></slot>
     <input
       ref="inputRef"
-      type="search"
+      :type="type"
       data-search-input="true"
       :data-shortcut-enabled="shortcutListenerEnabled"
       :value="modelValue"
