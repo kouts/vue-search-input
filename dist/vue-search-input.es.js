@@ -76,7 +76,7 @@ const P = ["search", "text", "password"], g = (e, t, l = !0) => {
   for (const [r, o] of t)
     l[r] = o;
   return l;
-}, F = /* @__PURE__ */ d("i", { class: "search-icon search" }, null, -1), W = ["data-shortcut-enabled", "value"], N = /* @__PURE__ */ d("i", {
+}, F = /* @__PURE__ */ d("i", { class: "search-icon search" }, null, -1), W = ["type", "data-shortcut-enabled", "value"], N = /* @__PURE__ */ d("i", {
   class: "search-icon shortcut",
   title: 'Press "/" to search'
 }, null, -1);
@@ -89,7 +89,7 @@ function T(e, t, l, r, o, f) {
     u(e.$slots, "prepend-inner"),
     d("input", H({
       ref: "inputRef",
-      type: "search",
+      type: e.type,
       "data-search-input": "true",
       "data-shortcut-enabled": e.shortcutListenerEnabled,
       value: e.modelValue

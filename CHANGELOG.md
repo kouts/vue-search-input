@@ -1,3 +1,10 @@
+## [1.1.14](https://github.com/kouts/vue-search-input/compare/v1.1.13...v1.1.14) (2023-10-17)
+
+
+### Bug Fixes
+
+* fixed input types based on type prop ([a5d5256](https://github.com/kouts/vue-search-input/commit/a5d52569dc9d7e5d91464feb7d0d12984979a965))
+
 ## [1.1.13](https://github.com/kouts/vue-search-input/compare/v1.1.12...v1.1.13) (2023-10-16)
 
 
