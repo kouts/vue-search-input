@@ -1,6 +1,7 @@
 import { FieldType } from './SearchInput.types';
 import { PropType } from 'vue';
-declare const _default: import("vue").DefineComponent<{
+
+declare const _default: import('vue').DefineComponent<{
     type: {
         type: PropType<"search" | "text" | "password">;
         default: string;
@@ -51,20 +52,20 @@ declare const _default: import("vue").DefineComponent<{
         default: string;
     };
 }, {
-    inputRef: import("vue").Ref<HTMLInputElement | null>;
-    hasFocus: import("vue").Ref<boolean>;
+    inputRef: import('vue').Ref<HTMLInputElement | null>;
+    hasFocus: import('vue').Ref<boolean>;
     clear: () => void;
     onInput: (e: Event) => void;
     onKeydown: (e: KeyboardEvent) => void;
-    attrsStyles: import("vue").ComputedRef<{
+    attrsStyles: import('vue').ComputedRef<{
         [key: string]: unknown;
     }>;
-    attrsWithoutStyles: import("vue").ComputedRef<{
+    attrsWithoutStyles: import('vue').ComputedRef<{
         [key: string]: unknown;
     }>;
-    showClearIcon: import("vue").ComputedRef<boolean>;
-    showShortcutIcon: import("vue").ComputedRef<boolean>;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "update:modelValue"[], "update:modelValue", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    showClearIcon: import('vue').ComputedRef<boolean>;
+    showShortcutIcon: import('vue').ComputedRef<boolean>;
+}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, "update:modelValue"[], "update:modelValue", import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
     type: {
         type: PropType<"search" | "text" | "password">;
         default: string;
