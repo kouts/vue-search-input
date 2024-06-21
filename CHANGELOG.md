@@ -1,3 +1,10 @@
+## [1.1.16](https://github.com/kouts/vue-search-input/compare/v1.1.15...v1.1.16) (2024-06-21)
+
+
+### Bug Fixes
+
+* added types to package.json ([c09295d](https://github.com/kouts/vue-search-input/commit/c09295ddf35b8f49ec4170e019db4429fb3a0548))
+
 ## [1.1.15](https://github.com/kouts/vue-search-input/compare/v1.1.14...v1.1.15) (2024-06-15)
 
 

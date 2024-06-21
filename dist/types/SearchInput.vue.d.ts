@@ -3,7 +3,7 @@ import { PropType } from 'vue';
 
 declare const _default: import('vue').DefineComponent<{
     type: {
-        type: PropType<"search" | "text" | "password">;
+        type: PropType<FieldType>;
         default: string;
         validator: (prop: FieldType) => boolean;
     };
@@ -48,7 +48,7 @@ declare const _default: import('vue').DefineComponent<{
         default: boolean;
     };
     shortcutKey: {
-        type: PropType<string>;
+        type: PropType<KeyboardEvent["key"]>;
         default: string;
     };
 }, {
@@ -67,7 +67,7 @@ declare const _default: import('vue').DefineComponent<{
     showShortcutIcon: import('vue').ComputedRef<boolean>;
 }, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, "update:modelValue"[], "update:modelValue", import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
     type: {
-        type: PropType<"search" | "text" | "password">;
+        type: PropType<FieldType>;
         default: string;
         validator: (prop: FieldType) => boolean;
     };
@@ -112,7 +112,7 @@ declare const _default: import('vue').DefineComponent<{
         default: boolean;
     };
     shortcutKey: {
-        type: PropType<string>;
+        type: PropType<KeyboardEvent["key"]>;
         default: string;
     };
 }>> & {
