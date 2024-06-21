@@ -15,11 +15,12 @@
   ],
   "main": "dist/vue-search-input.umd.js",
   "module": "dist/vue-search-input.es.js",
-  "types": "dist/SearchInput.vue.d.ts",
+  "types": "dist/types/SearchInput.vue.d.ts",
   "exports": {
     ".": {
       "import": "./dist/vue-search-input.es.js",
-      "require": "./dist/vue-search-input.umd.js"
+      "require": "./dist/vue-search-input.umd.js",
+      "types": "./dist/types/SearchInput.vue.d.ts"
     },
     "./dist/styles.css": {
       "import": "./dist/styles.css",
