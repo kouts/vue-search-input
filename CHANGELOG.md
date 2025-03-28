@@ -1,3 +1,12 @@
+## [1.1.17](https://github.com/kouts/vue-search-input/compare/v1.1.16...v1.1.17) (2025-03-28)
+
+
+### Bug Fixes
+
+* added vitest, updated node and npm packages ([ad35ce4](https://github.com/kouts/vue-search-input/commit/ad35ce448b05daa0c64bc710522a20ce8a6d29bb))
+* fixed playground styling ([ff2e6d6](https://github.com/kouts/vue-search-input/commit/ff2e6d69feab68a6de6a02ea350289a3f324307a))
+* removed bootstrap ([218e29a](https://github.com/kouts/vue-search-input/commit/218e29a2c6f9f67ae41ddabf29536af1092817ec))
+
 ## [1.1.16](https://github.com/kouts/vue-search-input/compare/v1.1.15...v1.1.16) (2024-06-21)
 
 
