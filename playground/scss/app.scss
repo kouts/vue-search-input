@@ -1,19 +1,8 @@
-// 6. Optionally include any other parts as needed
-@import "bootstrap/scss/_utilities";
-@import "bootstrap/scss/_reboot";
-@import "bootstrap/scss/_type";
-@import "bootstrap/scss/_images";
-@import "bootstrap/scss/_containers";
-@import "bootstrap/scss/_grid";
-@import "bootstrap/scss/_helpers";
+@use 'sass:color';
 
-// 6.1 Include additional Bootstrap CSS as needed
-@import "bootstrap/scss/_buttons";
+$white: #ffffff;
+$input-icon-color: color.adjust(#f6f9fc, $lightness: 30%);
 
-// 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
-@import "bootstrap/scss/utilities/_api";
-
-// 8. Add additional custom code here
 .btn-primary {
   color: $white;
   &:hover {
@@ -21,8 +10,8 @@
   }
   &:focus {
     color: $white;
-  }  
-}   
+  }
+}
 
 .w270 {
   width: 270px;
@@ -81,5 +70,4 @@
       fill: $white;
     }
   }
-
 }

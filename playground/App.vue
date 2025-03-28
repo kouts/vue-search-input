@@ -183,6 +183,6 @@ const say = (text: string) => {
 </template>
 
 <style lang="scss">
-@import '@playground/scss/app.scss';
-@import '@/styles.scss';
+@use '@playground/scss/app.scss';
+@use '@/styles.scss';
 </style>

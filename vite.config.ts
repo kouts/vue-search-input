@@ -16,13 +16,6 @@ const playgroundConfig = {
   plugins: [vue()],
   resolve: { alias },
   build: { outDir: 'dist-playground' },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@import "@playground/scss/variables";`,
-      },
-    },
-  },
   test: {
     globals: true,
     environment: 'jsdom',
