@@ -27,7 +27,10 @@
       ]
     },
     "types": [
-      "@types/jest"
+      "vite/client",
+      "vitest/globals",
+      "jsdom",
+      "node",
     ],
   },
   "include": [

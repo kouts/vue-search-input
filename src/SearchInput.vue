@@ -29,40 +29,28 @@
 </template>
 
 <script lang="ts">
-import { FieldType, fieldType } from './SearchInput.types'
-import { PropType, computed, defineComponent, onBeforeUnmount, ref, watch } from 'vue'
-
-const filterObject = (obj: { [key: string]: unknown }, properties: (string | number)[], remove = true) => {
-  const res: { [key: string]: unknown } = {}
-
-  Object.keys(obj).forEach((objAttr) => {
-    const condition = remove ? properties.indexOf(objAttr) === -1 : properties.indexOf(objAttr) >= 0
-
-    if (condition) {
-      res[objAttr] = obj[objAttr]
-    }
-  })
-
-  return res
-}
+import { computed, defineComponent, onBeforeUnmount, type PropType, ref, watch } from 'vue'
+import { filterObject } from './filterObject'
+import { type FieldType, fieldType } from './SearchInput.types'
 
 const defaultBoolean = (val = true) => ({ type: Boolean, default: val })
 
 export default defineComponent({
+  name: 'SearchInput',
   inheritAttrs: false,
   props: {
     type: {
       type: String as PropType<FieldType>,
       default: 'search',
-      validator: (prop: FieldType) => fieldType.includes(prop)
+      validator: (prop: FieldType) => fieldType.includes(prop),
     },
     modelValue: {
       type: String,
-      default: ''
+      default: '',
     },
     wrapperClass: {
       type: String,
-      default: 'search-input-wrapper'
+      default: 'search-input-wrapper',
     },
     searchIcon: defaultBoolean(),
     shortcutIcon: defaultBoolean(),
@@ -74,8 +62,8 @@ export default defineComponent({
     shortcutListenerEnabled: defaultBoolean(),
     shortcutKey: {
       type: String as PropType<KeyboardEvent['key']>,
-      default: '/'
-    }
+      default: '/',
+    },
   },
   emits: ['update:modelValue'],
   setup(props, { emit, attrs }) {
@@ -111,7 +99,9 @@ export default defineComponent({
 
     const onKeydown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        props.clearOnEsc && clear()
+        if (props.clearOnEsc) {
+          clear()
+        }
         if (props.blurOnEsc) {
           const el = inputRef.value as HTMLInputElement
 
@@ -153,7 +143,7 @@ export default defineComponent({
           removeDocumentKeydown()
         }
       },
-      { immediate: true }
+      { immediate: true },
     )
 
     onBeforeUnmount(() => {
@@ -169,8 +159,8 @@ export default defineComponent({
       attrsStyles,
       attrsWithoutStyles,
       showClearIcon,
-      showShortcutIcon
+      showShortcutIcon,
     }
-  }
+  },
 })
 </script>

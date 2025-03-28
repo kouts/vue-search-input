@@ -1,10 +1,11 @@
-import { defineComponent as k, ref as I, computed as i, watch as b, onBeforeUnmount as K, openBlock as V, createElementBlock as B, normalizeProps as C, guardReactiveProps as L, renderSlot as u, createCommentVNode as y, createElementVNode as d, mergeProps as H, withKeys as M } from "vue";
-const P = ["search", "text", "password"], g = (e, t, l = !0) => {
+import { defineComponent as k, ref as I, computed as i, watch as b, onBeforeUnmount as K, createElementBlock as V, openBlock as B, normalizeProps as C, guardReactiveProps as L, renderSlot as u, createCommentVNode as y, createElementVNode as d, mergeProps as H, withKeys as M } from "vue";
+const g = (e, t, l = !0) => {
   const r = {};
   return Object.keys(e).forEach((o) => {
     (l ? t.indexOf(o) === -1 : t.indexOf(o) >= 0) && (r[o] = e[o]);
   }), r;
-}, a = (e = !0) => ({ type: Boolean, default: e }), R = k({
+}, P = ["search", "text", "password"], a = (e = !0) => ({ type: Boolean, default: e }), R = k({
+  name: "SearchInput",
   inheritAttrs: !1,
   props: {
     type: {
@@ -38,7 +39,7 @@ const P = ["search", "text", "password"], g = (e, t, l = !0) => {
     const r = I(!1), o = I(null), f = i(() => g(l, ["class", "style"])), s = i(() => {
       const n = g(l, ["class", "style"], !1);
       return n.class || (n.class = e.wrapperClass), n;
-    }), E = i(() => !!(e.clearIcon && e.modelValue.length > 0)), S = i(() => !!(e.shortcutIcon && !r.value && !e.hideShortcutIconOnBlur || e.shortcutIcon && !r.value && e.modelValue.length === 0)), m = () => {
+    }), S = i(() => !!(e.clearIcon && e.modelValue.length > 0)), E = i(() => !!(e.shortcutIcon && !r.value && !e.hideShortcutIconOnBlur || e.shortcutIcon && !r.value && e.modelValue.length === 0)), m = () => {
       t("update:modelValue", "");
     }, O = (n) => {
       t("update:modelValue", n.target.value);
@@ -67,8 +68,8 @@ const P = ["search", "text", "password"], g = (e, t, l = !0) => {
       onKeydown: $,
       attrsStyles: s,
       attrsWithoutStyles: f,
-      showClearIcon: E,
-      showShortcutIcon: S
+      showClearIcon: S,
+      showShortcutIcon: E
     };
   }
 }), D = (e, t) => {
@@ -76,15 +77,12 @@ const P = ["search", "text", "password"], g = (e, t, l = !0) => {
   for (const [r, o] of t)
     l[r] = o;
   return l;
-}, F = /* @__PURE__ */ d("i", { class: "search-icon search" }, null, -1), W = ["type", "data-shortcut-enabled", "value"], N = /* @__PURE__ */ d("i", {
-  class: "search-icon shortcut",
-  title: 'Press "/" to search'
-}, null, -1);
-function T(e, t, l, r, o, f) {
-  return V(), B("div", C(L(e.attrsStyles)), [
+}, F = ["type", "data-shortcut-enabled", "value"];
+function W(e, t, l, r, o, f) {
+  return B(), V("div", C(L(e.attrsStyles)), [
     u(e.$slots, "prepend"),
     e.searchIcon ? u(e.$slots, "search-icon", { key: 0 }, () => [
-      F
+      t[6] || (t[6] = d("i", { class: "search-icon search" }, null, -1))
     ]) : y("", !0),
     u(e.$slots, "prepend-inner"),
     d("input", H({
@@ -98,10 +96,13 @@ function T(e, t, l, r, o, f) {
       onFocus: t[1] || (t[1] = (s) => e.hasFocus = !0),
       onBlur: t[2] || (t[2] = (s) => e.hasFocus = !1),
       onKeydown: t[3] || (t[3] = (...s) => e.onKeydown && e.onKeydown(...s))
-    }), null, 16, W),
+    }), null, 16, F),
     u(e.$slots, "append"),
     e.showShortcutIcon ? u(e.$slots, "shortcut-icon", { key: 1 }, () => [
-      N
+      t[7] || (t[7] = d("i", {
+        class: "search-icon shortcut",
+        title: 'Press "/" to search'
+      }, null, -1))
     ]) : y("", !0),
     e.showClearIcon ? u(e.$slots, "clear-icon", {
       key: 2,
@@ -117,7 +118,7 @@ function T(e, t, l, r, o, f) {
     u(e.$slots, "append-outer")
   ], 16);
 }
-const z = /* @__PURE__ */ D(R, [["render", T]]);
+const T = /* @__PURE__ */ D(R, [["render", W]]);
 export {
-  z as default
+  T as default
 };

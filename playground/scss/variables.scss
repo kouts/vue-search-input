@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 // Include parts of Bootstrap
 
 // 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
@@ -8,7 +10,7 @@ $primary: #1ea7fd;
 $font-family-sans-serif: Avenir, Helvetica, Arial, sans-serif;
 
 // 2.1. Add custom SCSS variables
-$input-icon-color: darken(#f6f9fc, 30%);
+$input-icon-color: color.adjust(#f6f9fc, $lightness: 30%);
 
 // 3. Include remainder of required Bootstrap stylesheets
 @import 'bootstrap/scss/_variables';

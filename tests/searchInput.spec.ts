@@ -1,6 +1,6 @@
-import SearchInput from '@/SearchInput.vue'
-import { fieldType } from '@/SearchInput.types'
 import { mount } from '@vue/test-utils'
+import { fieldType } from '@/SearchInput.types'
+import SearchInput from '@/SearchInput.vue'
 
 const INPUT_SELECTOR = 'input[data-search-input="true"]'
 
@@ -11,12 +11,12 @@ const createWrapper = (opts?: Record<string, unknown>) => {
 const createWrapperContainer = () => {
   const wrapperContainer = {
     components: {
-      SearchInput
+      SearchInput,
     },
     data() {
       return {
         searchText1: '',
-        searchText2: ''
+        searchText2: '',
       }
     },
     template: `
@@ -24,11 +24,11 @@ const createWrapperContainer = () => {
         <SearchInput v-model="searchText1" />
         <SearchInput v-model="searchText2" />
       </div>
-    `
+    `,
   }
 
   return mount(wrapperContainer, {
-    attachTo: document.body
+    attachTo: document.body,
   })
 }
 
@@ -40,8 +40,8 @@ describe('SearchInput.vue', () => {
   it.each(fieldType)('should render an input with type %s', (typeProp) => {
     const wrapper = createWrapper({
       props: {
-        type: typeProp
-      }
+        type: typeProp,
+      },
     })
 
     const input = wrapper.find(`input[type="${typeProp}"]`)
@@ -60,8 +60,8 @@ describe('SearchInput.vue', () => {
   it('should pass class to the input wrapper', async () => {
     const wrapper = createWrapper({
       attrs: {
-        class: 'test-class'
-      }
+        class: 'test-class',
+      },
     })
 
     const div = await wrapper.find('div')
@@ -70,7 +70,7 @@ describe('SearchInput.vue', () => {
   })
 
   it('should pass event listeners to the input', async () => {
-    const onClick = jest.fn()
+    const onClick = vi.fn()
     const wrapper = createWrapper({ attrs: { onClick } })
 
     wrapper.find('input').trigger('click')
@@ -99,8 +99,8 @@ describe('SearchInput.vue', () => {
   it('clears the value when the clear icon is clicked', async () => {
     const wrapper = createWrapper({
       props: {
-        modelValue: 'test'
-      }
+        modelValue: 'test',
+      },
     })
 
     const button = await wrapper.find('button.search-icon.clear')
@@ -113,14 +113,14 @@ describe('SearchInput.vue', () => {
   it('clears the value with the "esc" key', async () => {
     const wrapper = createWrapper({
       props: {
-        modelValue: 'test'
-      }
+        modelValue: 'test',
+      },
     })
 
     const input = wrapper.find('input')
 
     await input.trigger('keydown', {
-      key: 'Escape'
+      key: 'Escape',
     })
 
     expect(wrapper.emitted()['update:modelValue'][0]).toEqual([''])
@@ -128,7 +128,7 @@ describe('SearchInput.vue', () => {
 
   it('focuses the input when the "/" key is pressed', async () => {
     const wrapper = createWrapper({
-      attachTo: document.body
+      attachTo: document.body,
     })
 
     const event = new KeyboardEvent('keydown', { key: '/' })
@@ -141,7 +141,7 @@ describe('SearchInput.vue', () => {
   })
 
   it('removes the keydown event listener when unmounted', async () => {
-    const removeSpy = jest.spyOn(document, 'removeEventListener').mockImplementation()
+    const removeSpy = vi.spyOn(document, 'removeEventListener').mockImplementation(() => {})
     const wrapper = createWrapper()
 
     wrapper.unmount()
@@ -149,12 +149,14 @@ describe('SearchInput.vue', () => {
   })
 
   it('removes the keydown event listener when shortcutListenerEnabled prop turns false', async () => {
-    const removeSpy = jest.spyOn(document, 'removeEventListener').mockImplementation()
+    const removeSpy = vi.spyOn(document, 'removeEventListener').mockImplementation(() => {})
     const wrapper = createWrapper()
 
     wrapper.setProps({
-      shortcutListenerEnabled: false
+      shortcutListenerEnabled: false,
     })
+
+    await wrapper.vm.$nextTick()
 
     expect(removeSpy).toHaveBeenCalled()
   })
@@ -162,8 +164,8 @@ describe('SearchInput.vue', () => {
   it('selects the input text when focused with the "/" key', async () => {
     const wrapper = createWrapper({
       props: {
-        modelValue: 'test'
-      }
+        modelValue: 'test',
+      },
     })
 
     const event = new KeyboardEvent('keydown', { key: '/' })
@@ -196,8 +198,8 @@ describe('SearchInput.vue', () => {
   it('should render a shortcut icon when the hideShortcutIconOnBlur prop is false', async () => {
     const wrapper = createWrapper({
       props: {
-        hideShortcutIconOnBlur: false
-      }
+        hideShortcutIconOnBlur: false,
+      },
     })
 
     const i = await wrapper.find('i.search-icon.shortcut')
@@ -208,8 +210,8 @@ describe('SearchInput.vue', () => {
   it('renders the prepend slot', async () => {
     const wrapper = createWrapper({
       slots: {
-        prepend: '<div class="prepend">prepend content</div>'
-      }
+        prepend: '<div class="prepend">prepend content</div>',
+      },
     })
 
     const prepend = wrapper.find('.prepend')
@@ -221,8 +223,8 @@ describe('SearchInput.vue', () => {
   it('renders the prepend-inner slot', async () => {
     const wrapper = createWrapper({
       slots: {
-        'prepend-inner': '<div class="prepend-inner">prepend-inner content</div>'
-      }
+        'prepend-inner': '<div class="prepend-inner">prepend-inner content</div>',
+      },
     })
 
     const prependInner = wrapper.find('.prepend-inner')
@@ -234,8 +236,8 @@ describe('SearchInput.vue', () => {
   it('renders the append slot', async () => {
     const wrapper = createWrapper({
       slots: {
-        append: '<div class="append">append content</div>'
-      }
+        append: '<div class="append">append content</div>',
+      },
     })
 
     const append = wrapper.find('.append')
@@ -247,8 +249,8 @@ describe('SearchInput.vue', () => {
   it('renders the append-outer slot', async () => {
     const wrapper = createWrapper({
       slots: {
-        'append-outer': '<div class="append-outer">append-outer content</div>'
-      }
+        'append-outer': '<div class="append-outer">append-outer content</div>',
+      },
     })
 
     const appendOuter = wrapper.find('.append-outer')
