@@ -1,5 +1,6 @@
 /// <reference types="vitest" />
 
+import tailwindcss from '@tailwindcss/vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 import del from 'rollup-plugin-delete'
@@ -13,7 +14,7 @@ const alias = {
 }
 
 const playgroundConfig = {
-  plugins: [vue()],
+  plugins: [vue(), tailwindcss()],
   resolve: { alias },
   build: { outDir: 'dist-playground' },
   test: {
