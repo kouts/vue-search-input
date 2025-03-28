@@ -1,7 +1,6 @@
-import { FieldType } from './SearchInput.types';
 import { PropType } from 'vue';
-
-declare const _default: import('vue').DefineComponent<{
+import { FieldType } from './SearchInput.types';
+declare const _default: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
     type: {
         type: PropType<FieldType>;
         default: string;
@@ -51,9 +50,9 @@ declare const _default: import('vue').DefineComponent<{
         type: PropType<KeyboardEvent["key"]>;
         default: string;
     };
-}, {
-    inputRef: import('vue').Ref<HTMLInputElement | null>;
-    hasFocus: import('vue').Ref<boolean>;
+}>, {
+    inputRef: import('vue').Ref<HTMLInputElement | null, HTMLInputElement | null>;
+    hasFocus: import('vue').Ref<boolean, boolean>;
     clear: () => void;
     onInput: (e: Event) => void;
     onKeydown: (e: KeyboardEvent) => void;
@@ -65,7 +64,7 @@ declare const _default: import('vue').DefineComponent<{
     }>;
     showClearIcon: import('vue').ComputedRef<boolean>;
     showShortcutIcon: import('vue').ComputedRef<boolean>;
-}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, "update:modelValue"[], "update:modelValue", import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
+}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, "update:modelValue"[], "update:modelValue", import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
     type: {
         type: PropType<FieldType>;
         default: string;
@@ -115,9 +114,9 @@ declare const _default: import('vue').DefineComponent<{
         type: PropType<KeyboardEvent["key"]>;
         default: string;
     };
-}>> & {
+}>> & Readonly<{
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
-}, {
+}>, {
     type: "search" | "text" | "password";
     modelValue: string;
     wrapperClass: string;
@@ -130,5 +129,5 @@ declare const _default: import('vue').DefineComponent<{
     selectOnFocus: boolean;
     shortcutListenerEnabled: boolean;
     shortcutKey: string;
-}, {}>;
+}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 export default _default;

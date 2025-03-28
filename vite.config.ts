@@ -1,26 +1,31 @@
-import del from 'rollup-plugin-delete'
-import dts from 'vite-plugin-dts'
+/// <reference types="vitest" />
+
+import tailwindcss from '@tailwindcss/vite'
 import vue from '@vitejs/plugin-vue'
-import { defineConfig } from 'vite'
 import { resolve } from 'path'
+import del from 'rollup-plugin-delete'
+import { defineConfig } from 'vite'
+import dts from 'vite-plugin-dts'
 
 const alias = {
   '@': resolve(__dirname, './src'),
   '@playground': resolve(__dirname, './playground'),
-  '@root': resolve(__dirname, './')
+  '@root': resolve(__dirname, './'),
 }
 
 const playgroundConfig = {
-  plugins: [vue()],
+  plugins: [vue(), tailwindcss()],
   resolve: { alias },
   build: { outDir: 'dist-playground' },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@import "@playground/scss/variables";`
-      }
-    }
-  }
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    reporters: ['default'],
+    coverage: {
+      reporter: ['text', 'json-summary'],
+      include: ['src/**'],
+    },
+  },
 }
 
 const libConfig = {
@@ -35,25 +40,25 @@ const libConfig = {
         const finalFilePath = filePath.replace('/dist/src/', '/dist/types/')
 
         return { filePath: finalFilePath, content }
-      }
-    })
+      },
+    }),
   ],
   resolve: { alias },
   build: {
     lib: {
       entry: resolve(__dirname, 'src/SearchInput.vue'),
       name: 'VueSearchInput',
-      fileName: (format) => `vue-search-input.${format}.js`
+      fileName: (format) => `vue-search-input.${format}.js`,
     },
     rollupOptions: {
       external: ['vue'],
       output: {
         globals: {
-          vue: 'Vue'
-        }
-      }
-    }
-  }
+          vue: 'Vue',
+        },
+      },
+    },
+  },
 }
 
 const config = process.env.BUILD_MODE && process.env.BUILD_MODE === 'playground' ? playgroundConfig : libConfig

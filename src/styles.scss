@@ -1,6 +1,8 @@
+@use 'sass:color';
+
 $input-color: #333;
 $input-background: #f6f9fc;
-$icon-color: darken($input-background, 30%);
+$icon-color: color.adjust($input-background, $lightness: -30%);
 $active-color: #1ea7fd;
 
 .search-input-wrapper {
@@ -20,7 +22,7 @@ $active-color: #1ea7fd;
     border-radius: 0.35rem;
     transition: border-color 0.15s ease-in-out;
     &:focus {
-      background-color: lighten($input-background, 25%);
+      background-color: color.adjust($input-background, $lightness: 25%);
       border-color: $active-color;
       outline: 0;
       box-shadow: none;
@@ -61,7 +63,7 @@ $active-color: #1ea7fd;
       cursor: text;
       right: 8px;
       bottom: 7px;
-      background-color: darken($input-background, 4%);
+      background-color: color.adjust($input-background, $lightness: -4%);
       border-radius: 3px;
       z-index: 50;
     }
@@ -77,7 +79,7 @@ $active-color: #1ea7fd;
       top: 4px;
       left: 10px;
       z-index: 51;
-      background-color: lighten($icon-color, 5%);
+      background-color: color.adjust($icon-color, $lightness: 5%);
     }
     &.clear {
       right: 5px;
@@ -94,7 +96,7 @@ $active-color: #1ea7fd;
       padding: 0px;
       outline: none;
       &:focus {
-        background: darken($input-background, 4%);
+        background: color.adjust($input-background, $lightness: -4%);
       }
     }
     &.clear::after,
