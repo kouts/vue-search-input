@@ -148,6 +148,10 @@ import '@playground/css/app.css'
 import { type Ref, ref } from 'vue'
 import SearchInput from '@/SearchInput.vue'
 
+defineOptions({
+  name: 'App',
+})
+
 type Refs = {
   [key in string]: Ref
 }
