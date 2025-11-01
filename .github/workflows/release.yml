@@ -8,6 +8,10 @@ jobs:
   ci:
     runs-on: ${{ matrix.os }}
 
+    permissions:
+      id-token: write
+      contents: write    
+
     strategy:
       matrix:
         os: [ubuntu-latest]
@@ -50,5 +54,4 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
