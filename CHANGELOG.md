@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/kouts/vue-search-input/compare/v1.1.19...v1.2.0) (2026-03-11)
+
+
+### Features
+
+* emit click events for search and clear actions ([45e0bdc](https://github.com/kouts/vue-search-input/commit/45e0bdcfc676158c67c33007e41b03aaf0caafe0))
+
 ## [1.1.19](https://github.com/kouts/vue-search-input/compare/v1.1.18...v1.1.19) (2025-11-01)
 
 

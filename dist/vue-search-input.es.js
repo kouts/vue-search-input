@@ -1,10 +1,10 @@
-import { defineComponent as k, ref as I, computed as c, watch as b, onBeforeUnmount as K, createElementBlock as V, openBlock as B, normalizeProps as C, guardReactiveProps as L, renderSlot as u, createCommentVNode as p, createElementVNode as i, mergeProps as F, withKeys as T } from "vue";
+import { defineComponent as O, ref as I, computed as c, watch as b, onBeforeUnmount as K, createElementBlock as V, openBlock as C, normalizeProps as B, guardReactiveProps as L, renderSlot as u, createCommentVNode as p, createElementVNode as i, mergeProps as F, withKeys as T } from "vue";
 const g = (e, t, r = !0) => {
   const l = {};
   return Object.keys(e).forEach((o) => {
     (r ? t.indexOf(o) === -1 : t.indexOf(o) >= 0) && (l[o] = e[o]);
   }), l;
-}, H = ["search", "text", "password"], a = (e = !0) => ({ type: Boolean, default: e }), M = k({
+}, H = ["search", "text", "password"], a = (e = !0) => ({ type: Boolean, default: e }), M = O({
   name: "SearchInput",
   inheritAttrs: !1,
   props: {
@@ -34,14 +34,14 @@ const g = (e, t, r = !0) => {
       default: "/"
     }
   },
-  emits: ["update:modelValue"],
+  emits: ["update:modelValue", "click:search", "click:clear"],
   setup(e, { emit: t, attrs: r }) {
     const l = I(!1), o = I(null), d = c(() => g(r, ["class", "style"])), s = c(() => {
       const n = g(r, ["class", "style"], !1);
       return n.class || (n.class = e.wrapperClass), n;
     }), S = c(() => !!(e.clearIcon && e.modelValue.length > 0)), E = c(() => !!(e.shortcutIcon && !l.value && !e.hideShortcutIconOnBlur || e.shortcutIcon && !l.value && e.modelValue.length === 0)), y = () => {
-      t("update:modelValue", "");
-    }, O = (n) => {
+      t("update:modelValue", ""), t("click:clear");
+    }, k = (n) => {
       t("update:modelValue", n.target.value);
     }, $ = (n) => {
       n.key === "Escape" && (e.clearOnEsc && y(), e.blurOnEsc && o.value.blur());
@@ -64,7 +64,7 @@ const g = (e, t, r = !0) => {
       inputRef: o,
       hasFocus: l,
       clear: y,
-      onInput: O,
+      onInput: k,
       onKeydown: $,
       attrsStyles: s,
       attrsWithoutStyles: d,
@@ -79,10 +79,13 @@ const g = (e, t, r = !0) => {
   return r;
 }, R = ["type", "data-shortcut-enabled", "value"];
 function D(e, t, r, l, o, d) {
-  return B(), V("div", C(L(e.attrsStyles)), [
+  return C(), V("div", B(L(e.attrsStyles)), [
     u(e.$slots, "prepend"),
     e.searchIcon ? u(e.$slots, "search-icon", { key: 0 }, () => [
-      t[6] || (t[6] = i("i", { class: "search-icon search" }, null, -1))
+      i("i", {
+        class: "search-icon search",
+        onClick: t[0] || (t[0] = (s) => e.$emit("click:search"))
+      })
     ]) : p("", !0),
     u(e.$slots, "prepend-inner"),
     i("input", F({
@@ -92,10 +95,10 @@ function D(e, t, r, l, o, d) {
       "data-shortcut-enabled": e.shortcutListenerEnabled,
       value: e.modelValue
     }, e.attrsWithoutStyles, {
-      onInput: t[0] || (t[0] = (...s) => e.onInput && e.onInput(...s)),
-      onFocus: t[1] || (t[1] = (s) => e.hasFocus = !0),
-      onBlur: t[2] || (t[2] = (s) => e.hasFocus = !1),
-      onKeydown: t[3] || (t[3] = (...s) => e.onKeydown && e.onKeydown(...s))
+      onInput: t[1] || (t[1] = (...s) => e.onInput && e.onInput(...s)),
+      onFocus: t[2] || (t[2] = (s) => e.hasFocus = !0),
+      onBlur: t[3] || (t[3] = (s) => e.hasFocus = !1),
+      onKeydown: t[4] || (t[4] = (...s) => e.onKeydown && e.onKeydown(...s))
     }), null, 16, R),
     u(e.$slots, "append"),
     e.showShortcutIcon ? u(e.$slots, "shortcut-icon", { key: 1 }, () => [
@@ -111,8 +114,8 @@ function D(e, t, r, l, o, d) {
       i("button", {
         class: "search-icon clear",
         "aria-label": "Clear",
-        onMousedown: t[4] || (t[4] = (...s) => e.clear && e.clear(...s)),
-        onKeydown: t[5] || (t[5] = T((...s) => e.clear && e.clear(...s), ["space", "enter"]))
+        onMousedown: t[5] || (t[5] = (...s) => e.clear && e.clear(...s)),
+        onKeydown: t[6] || (t[6] = T((...s) => e.clear && e.clear(...s), ["space", "enter"]))
       }, null, 32)
     ]) : p("", !0),
     u(e.$slots, "append-outer")

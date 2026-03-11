@@ -64,7 +64,7 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
     }>;
     showClearIcon: import('vue').ComputedRef<boolean>;
     showShortcutIcon: import('vue').ComputedRef<boolean>;
-}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, "update:modelValue"[], "update:modelValue", import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
+}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, ("update:modelValue" | "click:search" | "click:clear")[], "update:modelValue" | "click:search" | "click:clear", import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
     type: {
         type: PropType<FieldType>;
         default: string;
@@ -116,6 +116,8 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
     };
 }>> & Readonly<{
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
+    "onClick:search"?: ((...args: any[]) => any) | undefined;
+    "onClick:clear"?: ((...args: any[]) => any) | undefined;
 }>, {
     type: "search" | "text" | "password";
     modelValue: string;
