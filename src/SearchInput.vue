@@ -2,7 +2,7 @@
   <div v-bind="attrsStyles">
     <slot name="prepend"></slot>
     <slot v-if="searchIcon" name="search-icon">
-      <i class="search-icon search"></i>
+      <i class="search-icon search" @click="$emit('click:search')"></i>
     </slot>
     <slot name="prepend-inner"></slot>
     <input
@@ -65,7 +65,7 @@ export default defineComponent({
       default: '/',
     },
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'click:search', 'click:clear'],
   setup(props, { emit, attrs }) {
     const hasFocus = ref(false)
     const inputRef = ref<null | HTMLInputElement>(null)
@@ -91,6 +91,7 @@ export default defineComponent({
 
     const clear = () => {
       emit('update:modelValue', '')
+      emit('click:clear')
     }
 
     const onInput = (e: Event) => {

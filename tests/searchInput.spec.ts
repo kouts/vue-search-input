@@ -57,6 +57,15 @@ describe('SearchInput.vue', () => {
     expect(i).toBeTruthy()
   })
 
+  it('emits click:search when the search icon is clicked', async () => {
+    const wrapper = createWrapper()
+    const searchIcon = wrapper.find('i.search-icon.search')
+
+    await searchIcon.trigger('click')
+
+    expect(wrapper.emitted()['click:search'][0]).toEqual([])
+  })
+
   it('should pass class to the input wrapper', async () => {
     const wrapper = createWrapper({
       attrs: {
@@ -108,6 +117,7 @@ describe('SearchInput.vue', () => {
     await button.trigger('mousedown')
 
     expect(wrapper.emitted()['update:modelValue'][0]).toEqual([''])
+    expect(wrapper.emitted()['click:clear'][0]).toEqual([])
   })
 
   it('clears the value with the "esc" key', async () => {
