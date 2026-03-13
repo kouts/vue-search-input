@@ -54,6 +54,7 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
     inputRef: import('vue').Ref<HTMLInputElement | null, HTMLInputElement | null>;
     hasFocus: import('vue').Ref<boolean, boolean>;
     clear: () => void;
+    clearAndFocus: () => void;
     onInput: (e: Event) => void;
     onKeydown: (e: KeyboardEvent) => void;
     attrsStyles: import('vue').ComputedRef<{

@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/kouts/vue-search-input/compare/v1.2.0...v1.2.1) (2026-03-13)
+
+
+### Bug Fixes
+
+* fixed focus after clearing ([5c1b00c](https://github.com/kouts/vue-search-input/commit/5c1b00c6e784219198f8f434c82091dac4cc063c))
+
 # [1.2.0](https://github.com/kouts/vue-search-input/compare/v1.1.19...v1.2.0) (2026-03-11)
 
 
