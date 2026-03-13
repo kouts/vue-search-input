@@ -22,14 +22,19 @@
       <i class="search-icon shortcut" :title="'Press &quot;/&quot; to search'"></i>
     </slot>
     <slot v-if="showClearIcon" name="clear-icon" :clear="clear">
-      <button class="search-icon clear" aria-label="Clear" @mousedown="clear" @keydown.space.enter="clear"></button>
+      <button
+        class="search-icon clear"
+        aria-label="Clear"
+        @mousedown.prevent="clearAndFocus"
+        @keydown.space.enter.prevent="clearAndFocus"
+      ></button>
     </slot>
     <slot name="append-outer"></slot>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onBeforeUnmount, type PropType, ref, watch } from 'vue'
+import { computed, defineComponent, nextTick, onBeforeUnmount, type PropType, ref, watch } from 'vue'
 import { filterObject } from './filterObject'
 import { type FieldType, fieldType } from './SearchInput.types'
 
@@ -94,6 +99,13 @@ export default defineComponent({
       emit('click:clear')
     }
 
+    const clearAndFocus = () => {
+      clear()
+      nextTick(() => {
+        inputRef.value?.focus()
+      })
+    }
+
     const onInput = (e: Event) => {
       emit('update:modelValue', (e.target as HTMLInputElement).value)
     }
@@ -155,6 +167,7 @@ export default defineComponent({
       inputRef,
       hasFocus,
       clear,
+      clearAndFocus,
       onInput,
       onKeydown,
       attrsStyles,
